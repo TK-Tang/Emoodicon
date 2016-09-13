@@ -1,28 +1,28 @@
-@CHARSET "US-ASCII";
+@CHARSET "UTF-8";
 
+<style type="text/css">
 .formtable {
 	width: 400px;
 	padding: 10px;
 	border: 1px solid blue;
 }
 
-input[type=text] {
+input [type=text] {
 	width: 250px;
-	
 }
 
 textarea {
 	width: 250px;
-	height: 300px;
+	height: 100px;
+	margin-left: 10px;
 }
 
-/* spring doesn't recognize css classes for some reason (????) Probably something stupid in the code - not able to render table*/
 .label {
 	text-align: right;
 	vertical-align: top;
 }
 
-.control {
+.control{
 	margin-left: 10px;
 }
 
@@ -30,13 +30,4 @@ textarea {
 	font-size: small;
 	color: red;
 	margin-left: 10px;
-}
-
-table.offers {
-	padding: 20px;
-	border: 1px solid gray;
-}
-
-p.error {
-	font-size: medium;
 }

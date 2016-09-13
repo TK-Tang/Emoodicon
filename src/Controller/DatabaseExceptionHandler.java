@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class DatabaseExceptionHandler {
 	@ExceptionHandler(DataAccessException.class)
 	public String handleDatabaseException(DataAccessException ex){	
-		ex.printStackTrace();
 		return "Error";
 	}
 }

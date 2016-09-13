@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Offer created:
-	<a href="${pageContext.request.contextPath}/Offers">Click to view
-		all offers.</a>
+Offer created: <a href="${pageContext.request.contextPath}/Offers">Click to view all offers.</a>
 </body>
 </html>

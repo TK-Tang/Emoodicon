@@ -5,16 +5,17 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import DAO.Offer;
-import ServiceLayers.OffersService;
 
 @Controller
 public class OffersController {
@@ -44,14 +45,21 @@ public class OffersController {
 	@RequestMapping("/Offers")
 	public String showOffers(Model model){
 		
+		offersService.throwTestException();
+		
 		List<Offer> offers = offersService.getCurrent();
 		
-		model.addAttribute("name", "<b> Asdf </b>");
+		model.addAttribute("name", "<b> Kevin </b>");
 		model.addAttribute("offers", offers);
 		
 		return "Offers";
 	}
-
+	
+	
+	private Object offersService() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
@@ -94,6 +102,7 @@ public class OffersController {
 		System.out.println(offer);
 		return "OfferCreated";
 	}
+	
 	
 	@Autowired
 	public void setOffersService(OffersService offersService) {
