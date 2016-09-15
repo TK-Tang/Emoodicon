@@ -118,11 +118,7 @@
 		</dependency>  
 		
 		<!-- Manually added -->
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-orm</artifactId>
-    		<version>4.0.3.RELEASE</version>
-		</dependency>
+		
 		
 		<dependency>
     		<groupId>org.apache.tomcat</groupId>
