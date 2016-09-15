@@ -115,7 +115,32 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>  
+		
+		<!-- Manually added -->
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-orm</artifactId>
+    		<version>4.0.3.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.tomcat</groupId>
+    		<artifactId>tomcat-dbcp</artifactId>
+    		<version>7.0.55</version>
+		</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-tools -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-tools</artifactId>
+    <version>5.0.2.Final</version>
+</dependency>
+
+
+
+
+		      
 	</dependencies>
     <build>
         <plugins>
