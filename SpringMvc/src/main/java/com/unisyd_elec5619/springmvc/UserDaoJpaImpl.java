@@ -5,16 +5,22 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository
+@Component
 @Transactional
 public class UserDaoJpaImpl implements UserDao {
 
-	@Autowired
+	
     private SessionFactory sessionFactory;
 	
+    @Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public void insert(User user) {
 		System.out.println("UserDaoJpaImpl.insert(User user) called: " + user.nameFirst);

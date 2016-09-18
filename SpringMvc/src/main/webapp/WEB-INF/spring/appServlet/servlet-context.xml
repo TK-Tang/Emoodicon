@@ -63,4 +63,13 @@
 	<beans:bean id="persistenceExceptionTranslationPostProcessor"
     class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 	
+ <beans:bean id="userService" class="com.unisyd_elec5619.springmvc.UserServiceImpl">
+        <beans:property name="userDao" ref="userDao"/>
+    </beans:bean>
+
+
+    <beans:bean id="userDao" class="com.unisyd_elec5619.springmvc.UserDaoJpaImpl">
+   	<beans:property name="sessionFactory" ref="sessionFactory"/>
+    </beans:bean>	
+	
 </beans:beans>
