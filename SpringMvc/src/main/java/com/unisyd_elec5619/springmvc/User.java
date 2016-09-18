@@ -2,10 +2,24 @@ package com.unisyd_elec5619.springmvc;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table
 public class User {
     //@NotNull
     //@Size(min=2, max=20)
-    String nameFirst;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="Id")
+	long id;
+	String nameFirst;
     //@NotNull
     //@Size(min=2, max=20)
     String nameLast;

@@ -1,9 +1,14 @@
 package com.unisyd_elec5619.springmvc;
 
+import org.hibernate.classic.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,8 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+
 public class UserController {
 
+	@Autowired
+	private UserService userService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	//@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -31,11 +40,15 @@ public class UserController {
         System.out.println("result.hasErrors(): " + result.hasErrors());
         ModelAndView mv = new ModelAndView();
         mv.addObject("u", user);
+        mv.addObject("genders", Gender.values());
+        mv.addObject("countries", Country.values());
 
         if (result.hasErrors()) {
             mv.setViewName("userForm");
         } else {
             mv.setViewName("userResult");
+            
+            userService.save(user);
         }
 
         return mv;
