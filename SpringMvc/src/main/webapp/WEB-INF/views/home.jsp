@@ -78,14 +78,14 @@
 		
 		<P>  The time on the server is ${serverTime}. </P>
 		
-		<a href="/SpringMvc/projectList.htm"> links to project list</a>
+		<a href="/springmvc/projectList.htm"> links to project list</a>
 		<br />
-		<a href="/SpringMvc/projects/add"> add project</a>
+		<a href="/springmvc/projects/add"> add project</a>
 		<br />
 		<p> bred's demo, i kept it as original </p>
-		<a href="/SpringMvc/form"> form to submit</a>
+		<a href="/springmvc/form"> form to submit</a>
 		<br />
-		<a href="/SpringMvc/result.mvc"> result show</a>
+		<a href="/springmvc/result.mvc"> result show</a>
 		</div>
     </div>
     
