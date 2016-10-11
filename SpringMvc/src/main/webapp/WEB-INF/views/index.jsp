@@ -10,5 +10,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<a href="/SpringMvc/hello.htm"> links to project list</a>
 </body>
 </html>
