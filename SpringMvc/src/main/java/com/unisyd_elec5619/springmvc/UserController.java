@@ -1,14 +1,10 @@
 package com.unisyd_elec5619.springmvc;
 
-import org.hibernate.classic.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// Commented out imports to suppress warnings - TKTang
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +17,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	// Suppressing a warning by commenting out the logger. This may be used for AOPs - TKTang
+	// private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	//@RequestMapping(value = "/", method = RequestMethod.GET)
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
