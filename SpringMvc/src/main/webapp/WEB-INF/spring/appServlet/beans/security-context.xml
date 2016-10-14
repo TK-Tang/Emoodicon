@@ -20,9 +20,14 @@
 				data-source-ref="dataSource" />
 		</security:authentication-provider>
 	</security:authentication-manager>
-
+	
+			<!-- Don't typo the access = "exampleaccess" -->
+		<!-- Spring works through these entries top to bottom -->
+		
+	<!--  
 	<security:http use-expressions="true">
-		<!-- Don't typo the access = "exampleaccess" -->
+		
+		 
 		<security:intercept-url pattern="/NewAccount"
 			access="permitAll" />
 		<security:intercept-url pattern="/AccountCreated"
@@ -31,16 +36,19 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/Error"
 			access="permitAll" />
-		<security:intercept-url pattern="/" access="permitAll" /> <!-- Spring works through these entries top to bottom -->
+		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/static/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/Login"
 			access="permitAll" />
-		<security:intercept-url pattern="/**" access="denyAll" />
+		<security:intercept-url pattern="/**" access="permitAll" />
 
 		<security:form-login login-page="/Login"
 			login-processing-url="/j_spring_security_check" username-parameter="j_username"
 			password-parameter="j_password" authentication-failure-url="/Login?error=true" />
+			
+		
 	</security:http>
+	-->
 
 </beans>

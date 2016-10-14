@@ -41,8 +41,10 @@
 
 
 	<!-- This manages user logins and sessions -->
+	<!-- Name must be springSecurityFilterChain -->
+	<!--  
 	<filter>
-		<display-name>springSecurityFilterChain</display-name> <!-- Name must be springSecurityFilterChain -->
+		<display-name>springSecurityFilterChain</display-name>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
@@ -51,5 +53,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
 
 </web-app>
