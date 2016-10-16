@@ -7,19 +7,17 @@
 	<!-- Loading context XMLs -->
 	<!--  com.unisyd_elec5619.springmvc.beans -->
 	<!--  The class paths are rather annoyingly tricky -->
+		<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		/WEB-INF/spring/root-context.xml
-		/WEB-INF/spring/appServlet/beans/DAO-context.xml
-		/WEB-INF/spring/appServlet/beans/service-context.xml
 		/WEB-INF/spring/appServlet/beans/security-context.xml
 		</param-value>
 	</context-param>
 	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 	
 	<!-- Grabs the main servlet context for loading beans and connecting controllers to HTTP requests | also manages DB connection -->
 	<servlet>
@@ -42,7 +40,7 @@
 
 	<!-- This manages user logins and sessions -->
 	<!-- Name must be springSecurityFilterChain -->
-	<!--  
+ 
 	<filter>
 		<display-name>springSecurityFilterChain</display-name>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -53,6 +51,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	-->
+
 
 </web-app>

@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.unisyd_elec5619.springmvc.domain.Project;
 import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
 
-
-
 @Controller
 @RequestMapping(value="/projects/**")
 public class ProjectController {
@@ -24,11 +22,13 @@ public class ProjectController {
 
 	@RequestMapping(value="/add")
 	public String addProject(Model uiModel) {
+		System.out.println("Returning add.jsp");
 		return "add";
 	}
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public String addProject(HttpServletRequest httpServletRequest) {
+		System.out.println("Redirecting to projectlist.jsp");
 		
 		Project project = new Project();
 		project.setDescription(httpServletRequest.getParameter("description"));

@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -21,7 +22,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<!-- Custom styles for this template -->
-	<link href="<c:url value="/resources/theme.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/theme.css" />" rel="stylesheet">
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -51,8 +52,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
+                <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/newaccount">Register</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
@@ -76,16 +77,20 @@
 			Hello world!  
 		</h1>
 		
-		<P>  The time on the server is ${serverTime}. </P>
+		<P> The time on the server is ${serverTime}. </P>
+		<p> asdf was here </p>
 		
 		<a href="/springmvc/projectList.htm"> links to project list</a>
 		<br />
 		<a href="/springmvc/projects/add"> add project</a>
 		<br />
 		<p> bred's demo, i kept it as original </p>
-		<a href="/springmvc/form"> form to submit</a>
+		<p>form to submit</p>
+		<!--   <a href="/springmvc/form"> form to submit</a> -->
 		<br />
-		<a href="/springmvc/result.mvc"> result show</a>
+		<!-- <a href="/springmvc/result.mvc"> form to submit</a> -->
+		
+		<p> result show</p>
 		</div>
     </div>
     

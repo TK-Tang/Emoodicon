@@ -1,4 +1,4 @@
-package com.unisyd_elec5619.springmvc;
+package com.unisyd_elec5619.springmvc.users.enums;
 
 import java.util.Map;
 

@@ -1,3 +1,5 @@
+@CHARSET "US-ASCII";
+
 body {
   padding-top: 70px;
   padding-bottom: 30px;
@@ -15,4 +17,53 @@ body {
 
 .theme-showcase .navbar .container {
   width: auto;
+}
+
+.formtable {
+	width: 600px;
+	padding: 10px;
+	border: 1px solid blue;
+}
+
+input[type=text] {
+	width: 250px;
+	
+}
+
+textarea {
+	width: 250px;
+	height: 300px;
+}
+
+.label {
+	text-align: right;
+	vertical-align: top;
+}
+
+.control {
+	margin-left: 10px;
+}
+
+.error {
+	font-size: small;
+	color: red;
+	margin-left: 10px;
+}
+
+table.offers {
+	padding: 20px;
+	border: 1px solid gray;
+}
+
+p.error {
+	font-size: medium;
+}
+
+.valid{
+	color: green;
+	font-size: medium;
+}
+
+.error{
+	color: red;
 }

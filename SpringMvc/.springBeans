@@ -7,9 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
-		<config>src/main/webapp/WEB-INF/spring/appServlet/beans/service-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/beans/security-context.xml</config>
-		<config>src/main/webapp/WEB-INF/spring/appServlet/beans/DAO-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

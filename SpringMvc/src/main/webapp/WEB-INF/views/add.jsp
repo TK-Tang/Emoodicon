@@ -13,6 +13,7 @@
 			Description: <input type="text" name="description"/>
 			Price: <input type="text" name="price"/>
 			<input type="submit" value="Add"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 	</body>
 </html>
