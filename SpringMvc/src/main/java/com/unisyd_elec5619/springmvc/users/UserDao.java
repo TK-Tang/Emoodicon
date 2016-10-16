@@ -14,13 +14,15 @@ public interface UserDao {
 
 	public void update(List<Users> users);
 
-	public void delete(long userId);
+	public void deleteUser(long userId);
 
 	public Users find(long userId);
 
 	public List<Users> find(List<Long> userIds);
 	
-	public boolean exists(String username);
+	public boolean exists(long userId);
+	
+	public Users getUser(String username);
 
 
 }

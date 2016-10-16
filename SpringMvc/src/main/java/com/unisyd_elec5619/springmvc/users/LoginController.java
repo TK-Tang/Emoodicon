@@ -45,18 +45,12 @@ public class LoginController {
 	@RequestMapping(value = "createaccount", method = RequestMethod.POST)
 	public String createAccount(@Valid Users user, BindingResult result) {
 		
-		
-		
 		if (result.hasErrors()) {
 			return "newaccount";
 		}
-
+		
 		user.setAuthority("user");
 		user.setEnabled(1);
-		
-		if (userServiceImpl.exists(user.getUsername())){
-			result.rejectValue("username", "DuplicateKey.user.username", "This username already exists.");
-		}
 
 		try {
 			Authority au = new Authority(user.getUsername(), user.getAuthority());
@@ -68,7 +62,7 @@ public class LoginController {
 			return "newaccount";
 		}
 
-		return "dashboard";
+		return "login";
 	}
 
 }

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.unisyd_elec5619.springmvc.users.enums.Country;
 import com.unisyd_elec5619.springmvc.users.enums.Gender;
 
@@ -30,7 +32,9 @@ public class Users {
 	@Size(min=5, max=40)
 	@Column(name = "username")
 	private String username;
-
+	
+	@NotNull
+	@Size(min=7, max=45)
 	@Column(name = "password")
     private String password;
 	
@@ -53,9 +57,6 @@ public class Users {
 	@Column(name = "country")
     @Enumerated(EnumType.STRING)
     private Country country;
-	
-	@Column(name = "date")
-    private Date birthDate;
 	
 	@Column(name = "authority")
 	private String authority;
@@ -108,6 +109,13 @@ public class Users {
     }
 
     public Gender getGender() {
+    	
+    	/*
+    	if (this.gender == null){
+    		return Gender.MALE;
+    	}
+    	*/
+    	
         return gender;
     }
 
@@ -123,14 +131,6 @@ public class Users {
         this.nonSmoking = nonSmoking;
     }
    
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public Country getCountry() {
         return country;
     }

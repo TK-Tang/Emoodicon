@@ -20,8 +20,17 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean exists(String username) {
-		return userDao.exists(username);
+	public boolean exists(long id) {
+		return userDao.exists(id);
+	}
+
+	@Override
+	public void update(Users user){
+		userDao.update(user);
+	}
+	
+	public Users getUser(String username){
+		return userDao.getUser(username);
 	}
 
 }

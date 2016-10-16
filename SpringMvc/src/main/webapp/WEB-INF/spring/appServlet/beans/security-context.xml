@@ -12,9 +12,7 @@
 
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user 
-					name="Admin" 
-					password="asdf"
+				<security:user name="Admin" password="asdf"
 					authorities="user" />
 			</security:user-service>
 		</security:authentication-provider>
@@ -25,8 +23,8 @@
 			<!-- dataSource is a data source bean connecting to a server -->
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
-				users-by-username-query = "select username, password, enabled from Users where username=?"
-		  		authorities-by-username-query = "select username, authority from Authority where username =?  " />
+				users-by-username-query="select username, password, enabled from Users where username=?"
+				authorities-by-username-query="select username, authority from Authority where username =?  " />
 		</security:authentication-provider>
 	</security:authentication-manager>
 
@@ -47,31 +45,32 @@
 
 	<!-- Don't typo the access = "exampleaccess" -->
 	<!-- Spring works through these entries top to bottom -->
-
-
-
 	<security:http use-expressions="true">
+
 		<security:access-denied-handler
-			error-page="/" />
+			error-page="/error" />
 
-		<!-- <security:intercept-url pattern="/newaccount" access="permitAll" /> 
-			<security:intercept-url pattern="/accountcreated" access="permitAll" /> <security:intercept-url 
-			pattern="/createAccount" access="permitAll" /> <security:intercept-url pattern="/error" 
-			access="permitAll" /> <security:intercept-url pattern="/" access="permitAll" 
-			/> <security:intercept-url pattern="/static/**" access="permitAll" /> <security:intercept-url 
-			pattern="/login" access="permitAll" /> -->
-		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:intercept-url pattern="/newaccount"
+			access="permitAll" />
+		<security:intercept-url pattern="/accountcreated"
+			access="permitAll" />
+		<security:intercept-url pattern="/createaccount"
+			access="permitAll" />
+		<security:intercept-url pattern="/error"
+			access="permitAll" />
+		<security:intercept-url pattern="/resources/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:intercept-url pattern="/**"
+			access="isAuthenticated()" />
 
 
-		<security:form-login 
-			login-page="/login"
-			default-target-url="/dashboard" 
-			login-processing-url="/j_spring_security_check"
-			username-parameter="username" 
-			password-parameter="password"
+		<security:form-login login-page="/login"
+			default-target-url="/login" login-processing-url="/j_spring_security_check"
+			username-parameter="username" password-parameter="password"
 			authentication-failure-url="/login?error=true" />
 		<security:csrf />
-
 
 	</security:http>
 

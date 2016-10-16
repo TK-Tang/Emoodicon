@@ -1,7 +1,9 @@
 package com.unisyd_elec5619.springmvc.users;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,37 +37,66 @@ public class UserDaoJpaImpl implements UserDao {
 	@Override
 	@Transactional
 	public void update(Users user) {
-		this.sessionFactory.getCurrentSession().update(user);
+		this.sessionFactory.getCurrentSession().merge(user);
 	}
 
 	@Override
 	@Transactional
 	public void update(List<Users> users) {
-		// TODO Auto-generated method stub
+		
+		for (Users u : users){
+			this.sessionFactory.getCurrentSession().merge(u);
+		}
 		
 	}
 
 	@Override
-	@Transactional
-	public void delete(long userId) {
-		// TODO Auto-generated method stub
+	public void deleteUser(long userId) {
+		Session currentSession = this.sessionFactory.getCurrentSession();
 		
+		Users user = (Users) currentSession.get(Users.class, userId);
+		currentSession.delete(user);
 	}
 
 	@Override
 	public Users find(long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Session currentSession = this.sessionFactory.getCurrentSession();
+		
+		return (Users) currentSession.get(Users.class, userId);
 	}
 
 	@Override
 	public List<Users> find(List<Long> userIds) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Users> userList = new ArrayList<Users>();
+		Session currentSession = this.sessionFactory.getCurrentSession();
+			
+		for (Long l : userIds){
+			userList.add((Users) currentSession.get(Users.class, l));
+		}
+		
+		return userList;
 	}
 	
-	public boolean exists(String username){
+	@Override
+	public boolean exists(long userId){
+		Session currentSession = this.sessionFactory.getCurrentSession();
+		
+		if (currentSession.get(Users.class, userId) != null){
+			return true;
+		} 
 		return false;
+	}
+	
+	@Override
+	@Transactional
+	public Users getUser(String username){
+		Session currentSession = this.sessionFactory.getCurrentSession();
+		
+		List<Users> userList = currentSession.createQuery("FROM Users WHERE username = :username").setParameter("username", username).list();
+		
+		Users user = userList.get(0);
+		
+		return user;
 	}
 
 
