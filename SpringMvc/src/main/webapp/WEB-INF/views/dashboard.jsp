@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -66,13 +67,26 @@
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
                 </a>
                 <ul class="children collapse in" id="sub-item-1">
-                	<c:forEach items="${projects}" var="prod">
-                		<li>
-	                        <a class="" href="#">
-	                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-	                            <c:out value="${prod.description}" />
-	                        </a>
-	                    </li>
+                	<c:forEach items="${projects}" var="proj" varStatus="projCounter">
+                		<c:choose>
+	                		<c:when test="${projCounter.count > 1}">
+	                			<li>
+			                        <a href="#">
+			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+			                            <c:out value="${proj.description}" />
+			                        </a>
+			                    </li>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<li class="active-project">
+			                        <a href="#">
+			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+			                            <c:out value="${proj.description}" />
+			                        </a>
+			                    </li>
+	                		</c:otherwise>
+	                	</c:choose>
+                		
 					</c:forEach>
                 	
                     <!-- <li class="active-project">
