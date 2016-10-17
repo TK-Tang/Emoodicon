@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
 import com.unisyd_elec5619.springmvc.service.ProjectManager;
 
 /**
@@ -31,7 +33,8 @@ public class DashboardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
 	
-    private ProjectManager projectManager;
+	@Resource(name="projectManager")
+	private DatabaseProjectManager projectManager;
 
 	@RequestMapping(value = {"/","/dashboard"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -42,9 +45,10 @@ public class DashboardController {
 		
 		model.addAttribute("username", name);
 		model.addAttribute("enabled", enabled);
-//		model.addAttribute("projects", this.projectManager.getProjects());
+		model.addAttribute("projects", this.projectManager.getProjects());
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info(this.projectManager.getProjects().toString());
 		
 		return "dashboard";
 	}

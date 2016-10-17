@@ -45,6 +45,7 @@
     </nav>
         
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+    	
         <form role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
@@ -65,7 +66,16 @@
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
                 </a>
                 <ul class="children collapse in" id="sub-item-1">
-                    <li class="active-project">
+                	<c:forEach items="${projects}" var="prod">
+                		<li>
+	                        <a class="" href="#">
+	                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+	                            <c:out value="${prod.description}" />
+	                        </a>
+	                    </li>
+					</c:forEach>
+                	
+                    <!-- <li class="active-project">
                         <a class="" href="#">
                             <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
                             Project Manhattan
@@ -82,7 +92,7 @@
                             <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
                             Project Neptune
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <li class="parent">
