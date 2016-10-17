@@ -99,7 +99,7 @@
 		<beans:property name="authorityDao" ref="authorityDao" />
 	</beans:bean>
 
-	<beans:bean name="/projectList.htm"
+	<beans:bean name="/projects/"
 		class="com.unisyd_elec5619.springmvc.web.ProjectViewController">
 		<beans:property name="projectManager" ref="projectManager" />
 	</beans:bean>

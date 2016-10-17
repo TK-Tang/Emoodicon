@@ -28,8 +28,6 @@ public class DashboardController {
 		String name = user.getUsername();
 		boolean enabled = user.isEnabled();
 		
-		System.out.println(enabled);
-		
 		model.addAttribute("username", name);
 		model.addAttribute("enabled", enabled);
 		
