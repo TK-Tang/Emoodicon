@@ -566,7 +566,8 @@ a.bg-danger:hover {
 .sidebar ul.nav a:hover, 
 .sidebar ul.nav li.parent ul li a:hover {
 	text-decoration: none;
-	background-color: #e9ecf2;
+	background-color: #555;
+	color: white;
 }
 
 .sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active,
