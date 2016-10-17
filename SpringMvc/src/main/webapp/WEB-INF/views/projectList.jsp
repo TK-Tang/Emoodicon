@@ -6,7 +6,6 @@
 	<body>
 		<h3>Products</h3>
 		<c:forEach items="${model.projects}" var="prod">
-			
 				<c:out value="${prod.description}" />
 				<br />
 				<i>$<c:out value="${prod.price}" /></i>
