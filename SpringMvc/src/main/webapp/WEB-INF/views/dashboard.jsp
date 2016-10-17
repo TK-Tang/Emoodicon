@@ -80,19 +80,7 @@
                             <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
                             Project Manhattan
                         </a>
-                    </li>
-                    <li>
-                        <a class="" href="#">
-                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-                            Project Spartan
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="#">
-                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-                            Project Neptune
-                        </a>
-                    </li> -->
+                    </li>-->
                 </ul>
             </li>
             <li class="parent">

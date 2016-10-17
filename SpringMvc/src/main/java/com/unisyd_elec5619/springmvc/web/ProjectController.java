@@ -35,7 +35,7 @@ public class ProjectController {
 		project.setPrice(Double.valueOf(httpServletRequest.getParameter("price")));
 		this.projectManager.addProject(project);
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/projects/";
 	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
@@ -53,7 +53,7 @@ public class ProjectController {
 		this.projectManager.updateProject(project);
 		System.out.println(project.getId());
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/projects/";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
@@ -61,6 +61,6 @@ public class ProjectController {
 		
 		this.projectManager.deleteProject(id);
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/projects/";
 	}
 }

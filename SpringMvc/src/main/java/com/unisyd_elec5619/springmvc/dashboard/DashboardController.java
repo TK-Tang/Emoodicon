@@ -48,7 +48,6 @@ public class DashboardController {
 		model.addAttribute("projects", this.projectManager.getProjects());
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
-		logger.info(this.projectManager.getProjects().toString());
 		
 		return "dashboard";
 	}
