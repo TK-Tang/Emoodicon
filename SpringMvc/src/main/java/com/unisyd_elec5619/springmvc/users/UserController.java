@@ -39,10 +39,7 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
-	@RequestMapping("/")
-	public String showDashboard(){
-		return "dashboard";
-	}
+	
 	@RequestMapping(value = "/usersettings", method = RequestMethod.GET)
 	public ModelAndView user() {
 		
@@ -77,8 +74,6 @@ public class UserController {
 	    
 	    return mv;
 	}
-	
-
 
 	@RequestMapping(value = "/usereditprofile", method = RequestMethod.POST)
 	public ModelAndView userEditProfile(@Valid @ModelAttribute("user") Users user, BindingResult result) {
@@ -117,7 +112,7 @@ public class UserController {
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return "login";
+	    return "redirect:/login";
 	}
 
 	// For access denied 403 errors
