@@ -1,0 +1,38 @@
+body{
+	/* background: url('http://wallpapercave.com/wp/0dWI3hG.jpg'); */
+	background: url('http://img.wallpaperfolder.com/f/4BE7DF37BB45/blur-gaussian-1920x1080-196279.jpg');
+	/* background: url('https://media.giphy.com/media/TKL07SyUBRIpq/giphy.gif'); */
+	/* background-size: cover; */
+	background-size: 100vw 100vh;
+}
+.login-box{
+	/* width: auto; */
+	/* border: 2px solid black; */
+	/* background: #f1f4f7; */
+	/* border-radius: 10px; */
+	color: white;
+	padding-top: 10px;
+	
+}
+
+.login-box label{
+	font-weight: 400;
+	width: 75px;
+	color: white;
+}
+
+.login-box span{
+	display: block;
+	padding: 5px 0px;
+}
+
+.login-box h1 span{
+	display:initial;
+	color: #30a5ff;
+}
+
+.login-box input[type="text"], .login-box input[type="password"]{
+	background-color: rgba(0,0,0,0.2);
+	border-radius: 5px;
+	padding: 0px 8px;
+}
