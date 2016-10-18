@@ -139,12 +139,12 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header">Project Manhattan</h1>
+                <h1 class="page-header">${projects[0].description}</h1>
                 <p>Project Manager: 
                     <span class="project-manager">Ken Nichols</span> 
                 </p>
                 <span class="project-settings">
-                    <a href="#">
+                    <a href="projects/edit/${projects[0].id }">
                         <svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>
                     </a>
                 </span>
