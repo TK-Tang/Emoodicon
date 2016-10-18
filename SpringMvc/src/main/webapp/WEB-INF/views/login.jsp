@@ -22,8 +22,11 @@
       <div class="container-fluid">
         <div class="container">
           <div class="row">
-            <div class="col-sm-4 col-sm-offset-4 login-box">
-            <h1>e<span>mood</span>icon</h1>
+          	<div class="col-sm-8">
+          		<h1>e<span>mood</span>icon</h1>
+          	</div>
+            <div class="col-sm-4 login-box">
+            <!-- <h1>e<span>mood</span>icon</h1> -->
 				    <c:if test = "${param.error != null}">
 				    <p class="error">[!] Login failed. Check your username and password. [!]</p>
 				    </c:if>
@@ -31,18 +34,17 @@
 				    <form name='login'
 				        action="<c:url value='j_spring_security_check' />"
 				        method='POST'>
-				        <span>
-			                <label>USERNAME</label>
-			                <input type='text' name='username' value='' />
-		       			</span>
-		       			<span>
-			                <label>PASSWORD</label>
-			                <input type='password' name='password' />
-			            </span>
-			            <span>
+				      		<div class="input-field col s12">
+				                <input id="username" type='text' name='username' value='' />
+			       				<label for="username">Username</label>
+			                </div>
+			                <div class="input-field col s12">
+				                <input id="password" type='password' name='password' />
+				            	<label for="password">Password</label>
+			            	</div>
 		                <input class="btn" name="submit" type="submit"
 		                    value="Login" />
-		                </span>
+
 		                <input type="hidden" name="${_csrf.parameterName}"
 		                    value="${_csrf.token}" />
 				    </form>
