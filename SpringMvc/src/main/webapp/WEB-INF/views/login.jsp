@@ -26,7 +26,7 @@
           		<h2>e<span>mood</span>icon</h2>
           		
     			<div class="col-sm-12 tagline">
-     				<h4>Keep track your team's emotions intelligently.</h4>
+     				<h4>Keep track of your team's emotions intelligently.</h4>
      				<h5>Analyse how productivity is impacted, and more.</h5>
      			</div>
           			
