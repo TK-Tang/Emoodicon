@@ -7,7 +7,7 @@
   <head>
     <title>Login to Emoodicon</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo|Open+Sans|Roboto">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Open+Sans|Roboto:100,300,400" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="${weppappRoot}/springmvc/resources/css/materialize.min.css">
     <link rel="stylesheet" href="${weppappRoot}/springmvc/resources/css/style-login.css">
@@ -18,12 +18,18 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </head>
   <body class="login">
-    <div class="container-fluid">
+    <div class="container-fluid full-container">
       <div class="container-fluid">
         <div class="container">
           <div class="row">
           	<div class="col-sm-8">
-          		<h1>e<span>mood</span>icon</h1>
+          		<h2>e<span>mood</span>icon</h2>
+          		
+    			<div class="col-sm-12 tagline">
+     				<h4>Keep track your team's emotions intelligently.</h4>
+     				<h5>Analyse how productivity is impacted, and more.</h5>
+     			</div>
+          			
           	</div>
             <div class="col-sm-4 login-box">
             <!-- <h1>e<span>mood</span>icon</h1> -->
@@ -35,22 +41,26 @@
 				        action="<c:url value='j_spring_security_check' />"
 				        method='POST'>
 				      		<div class="input-field col s12">
-				                <input id="username" type='text' name='username' value='' />
+				                <input id="username" type='text' name='username' value='' placeholder="Username"/>
 			       				<label for="username">Username</label>
 			                </div>
 			                <div class="input-field col s12">
-				                <input id="password" type='password' name='password' />
+				                <input id="password" type='password' name='password' placeholder="Password"/>
 				            	<label for="password">Password</label>
 			            	</div>
-		                <input class="btn" name="submit" type="submit"
+			            	<div class="col s12">
+			            		<input class="btn col s12" name="submit" type="submit"
 		                    value="Login" />
+			            	</div>
+		                
 
 		                <input type="hidden" name="${_csrf.parameterName}"
 		                    value="${_csrf.token}" />
 				    </form>
-				    
-				    Don't have an account? <p><a href= "<c:url value = "/newaccount"/>"> Sign up now!</a></p>
-				    <!--  Some fancy way to add a new URL over pageContext.request.contextPath -->
+				    <div class="col s12 signup-link">
+					    Don't have an account?<a href= "<c:url value = "/newaccount"/>"> Sign up now!</a>
+					    <!--  Some fancy way to add a new URL over pageContext.request.contextPath -->
+				    </div>
             </div>
           </div>
         </div>
