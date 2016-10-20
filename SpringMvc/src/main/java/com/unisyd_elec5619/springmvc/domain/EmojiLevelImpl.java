@@ -2,6 +2,7 @@ package com.unisyd_elec5619.springmvc.domain;
 
 
 import java.awt.image.BufferedImage;
+import java.io.UnsupportedEncodingException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.util.Base64Utils;
 
 import com.unisyd_elec5619.springmvc.users.enums.EmojiLevelEnum;
 
@@ -56,22 +59,33 @@ public class EmojiLevelImpl implements EmojiEmotion {
 	}
 	
 	@Override
-	public byte[] getEmojiImage() {
-		return emojiImage;
+	public String base64EncodedImage(){
+		// Code adapted from Stack Exchange http://stackoverflow.com/questions/26585804/show-image-on-jsp-with-spring-mvc-and-hibernate
+		byte[] encodeBase64 = Base64Utils.encode(emojiImage);
+		String base64Encoded = "";
+		try {
+			base64Encoded = new String(encodeBase64, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+        // End adapted code
+        return base64Encoded;
 	}
+	
+	
 	public void setEmojiImage(byte[] emojiImage) {
 		this.emojiImage = emojiImage;
 	}
 
 	@Override
 	public EmojiLevelEnum emojiLevel() {
-		// TODO Auto-generated method stub
-		return null;
+		return emojiLevelEnum;
 	}
 	
 	@Override
 	public String toString(){
-		return "Id: " + id + "Level: " + this.emojiLevelEnum + " Desc: " + levelDescription + "image length: " + emojiImage.length;
+		base64EncodedImage();
+		return "Id: " + id + "Level: " + this.emojiLevelEnum + " Desc: " + levelDescription + "image length: " + emojiImage.length + " base64EncodedImage()..length(): " + base64EncodedImage().length();
 	}
 	
 }
