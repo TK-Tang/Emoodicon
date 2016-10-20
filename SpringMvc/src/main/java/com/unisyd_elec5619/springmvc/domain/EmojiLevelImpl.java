@@ -33,10 +33,12 @@ public class EmojiLevelImpl implements EmojiEmotion {
 	String levelDescription;
 	
 	@Lob
-	BufferedImage emojiImage;
+	private byte[] emojiImage;
 	
 	//@Enumerated(EnumType.STRING)
 	EmojiLevelEnum emojiLevelEnum;
+	
+	public EmojiLevelImpl(){}
 	
 	public EmojiLevelImpl(String levelDescription, Object emojiImage, EmojiLevelEnum emojiLevelEnum) {
 		this.levelDescription = levelDescription;
@@ -54,10 +56,10 @@ public class EmojiLevelImpl implements EmojiEmotion {
 	}
 	
 	@Override
-	public BufferedImage getEmojiImage() {
+	public byte[] getEmojiImage() {
 		return emojiImage;
 	}
-	public void setEmojiImage(BufferedImage emojiImage) {
+	public void setEmojiImage(byte[] emojiImage) {
 		this.emojiImage = emojiImage;
 	}
 
@@ -66,4 +68,10 @@ public class EmojiLevelImpl implements EmojiEmotion {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public String toString(){
+		return "Id: " + id + "Level: " + this.emojiLevelEnum + " Desc: " + levelDescription + "image length: " + emojiImage.length;
+	}
+	
 }

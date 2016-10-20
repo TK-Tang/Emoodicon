@@ -1,6 +1,7 @@
 package com.unisyd_elec5619.springmvc.domain;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +42,7 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	String name;
 	boolean defaultEmoji;
 	
-	@OneToMany(targetEntity = EmojiLevelImpl.class,cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = EmojiLevelImpl.class,cascade=CascadeType.ALL)
 	@JoinColumn(name="family_id")
 	Set<EmojiEmotion> emojiFamily = new HashSet<EmojiEmotion>();
 	
@@ -61,7 +63,11 @@ public class EmojiFamilyImpl implements EmojiFamily {
 
 	@Override
 	public String toString(){
-		return "EmojiFamilyName: " + name + " Default: " + defaultEmoji;
+		Object[] emojiLevels = emojiFamily.toArray();
+		return "EmojiFamilyName: " + name + " Id: " + id + " Default: " + defaultEmoji + '\n'
+				+ ((EmojiEmotion)emojiLevels[0]).toString() + '\n'
+				+ ((EmojiEmotion)emojiLevels[1]).toString() + '\n'
+				+ ((EmojiEmotion)emojiLevels[2]).toString();
 	}
 	
 }
