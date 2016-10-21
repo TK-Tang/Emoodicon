@@ -25,6 +25,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.unisyd_elec5619.springmvc.users.enums.EmojiLevelEnum;
+
 @Entity
 @Table(name="EmojiFamily")
 public class EmojiFamilyImpl implements EmojiFamily {
@@ -70,4 +72,12 @@ public class EmojiFamilyImpl implements EmojiFamily {
 				+ ((EmojiEmotion)emojiLevels[2]).toString();
 	}
 	
+	@Override
+	public Map<EmojiLevelEnum,EmojiEmotion> emojis(){
+		Map<EmojiLevelEnum,EmojiEmotion> emojis = new HashMap<EmojiLevelEnum,EmojiEmotion>();
+		for (EmojiEmotion ee : emojiFamily) {
+			emojis.put(ee.emojiLevel(), ee);
+		}
+		return emojis;
+	}
 }

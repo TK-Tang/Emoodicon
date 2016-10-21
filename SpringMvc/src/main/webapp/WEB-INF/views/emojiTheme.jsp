@@ -70,15 +70,15 @@
             </form>
             <div class="row">
               <div class="col-md-4">
-                <img src="data:image/jpeg;charset=utf-8;base64,${emojiImg}"
+                <img src="data:image/jpeg;charset=utf-8;base64,${emojiImg1}"
                 class="img-responsive">
               </div>
               <div class="col-md-4">
-                <img src="https://dummyimage.com/600x400/000/fff.jpg"
+                <img src="data:image/jpeg;charset=utf-8;base64,${emojiImg2}"
                 class="img-responsive">
               </div>
               <div class="col-md-4">
-                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                <img src="data:image/jpeg;charset=utf-8;base64,${emojiImg3}"
                 class="img-responsive">
               </div>
             </div>
