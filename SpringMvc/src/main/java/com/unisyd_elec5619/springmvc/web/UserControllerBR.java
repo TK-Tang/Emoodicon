@@ -3,6 +3,7 @@ package com.unisyd_elec5619.springmvc.web;
 
 import org.hibernate.classic.Session;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -68,6 +69,7 @@ public class UserControllerBR {
             mv.setViewName("userForm");
         } else {
             mv.setViewName("userResult");
+            mv.setViewName("emojiTheme");
             
             userService.save(user);
             
@@ -79,6 +81,8 @@ public class UserControllerBR {
             efSet.add(new EmojiLevelImpl("testHigh19Oct", null, EmojiLevelEnum.HIGH));
             emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
             System.out.println(emojiService.getEmojiFamily().toString());
+            Object[] emoji = emojiService.getEmojiFamily().emojiFamily().toArray();
+            mv.addObject("emojiImg", ((EmojiEmotion)emoji[0]).base64EncodedImage());
         }
 
         return mv;
