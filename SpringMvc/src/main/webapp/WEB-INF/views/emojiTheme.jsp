@@ -34,22 +34,6 @@
           <div class="col-md-10">
             <form class="form-horizontal" role="form">
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">New &nbsp;emoji &nbsp;theme?</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-2">
-                  <label for="inputEmail3" class="control-label">New theme name</label>
-                </div>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder=${u.nameFirst}>
-                </div>
-              </div>
-              <div class="form-group">
                 <div class="col-sm-2">
                   <label class="control-label">Existing theme</label>
                 </div>
@@ -62,11 +46,19 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">Project default</label>
-                  </div>
+                <div class="col-sm-2">
+                  <label for="inputEmail3" class="control-label">Theme name</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputEmail3" value=${ef.name()}>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="inputEmail3" class="control-label">Default theme (Y/N)</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputEmail3" value=${ef.isDefaultYorN()}>
                 </div>
               </div>
             </form>

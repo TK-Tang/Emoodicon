@@ -80,4 +80,9 @@ public class EmojiFamilyImpl implements EmojiFamily {
 		}
 		return emojis;
 	}
+
+	@Override
+	public String isDefaultYorN() { 
+		return (defaultEmoji) ? "Y" : "N";
+	}
 }

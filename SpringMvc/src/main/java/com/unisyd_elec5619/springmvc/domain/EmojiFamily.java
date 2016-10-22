@@ -10,5 +10,6 @@ public interface EmojiFamily {
 	public Set<EmojiEmotion> emojiFamily();
 	public String name();
 	public boolean isDefault();
+	public String isDefaultYorN();
 	Map<EmojiLevelEnum, EmojiEmotion> emojis();
 }
