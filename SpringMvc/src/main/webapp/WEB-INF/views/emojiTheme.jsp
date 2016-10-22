@@ -2,6 +2,7 @@
 <%@ page session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="mvc" %>
 
 
 <html>
@@ -54,8 +55,9 @@
                 </div>
                 <div class="col-sm-10">
                   <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
+                  	<c:forEach items="${themeNames}" var="item" varStatus="count"> 
+            			<option value="${count.index}">${item}</option>
+        			</c:forEach>
                   </select>
                 </div>
               </div>
