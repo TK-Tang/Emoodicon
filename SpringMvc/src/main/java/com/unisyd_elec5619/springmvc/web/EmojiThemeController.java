@@ -44,14 +44,27 @@ public class EmojiThemeController {
 
 	//@RequestMapping(value = "/", method = RequestMethod.GET)
 	@RequestMapping(value = "/emojiTheme", method = RequestMethod.GET)
-    public ModelAndView user() {
-    	EmojiFamily ef = new EmojiFamilyImpl("test", false);
+    public ModelAndView emojiUserTheme() {
+    	EmojiFamily ef = new EmojiFamilyImpl();
         ModelAndView mv = new ModelAndView("emojiTheme", "emojiFamily", ef); // constructor takes model name, view name, model object
         mv.addObject("themeNames", emojiService.emojiFamilyNames());
         mv.addObject("ef", ef);
         return mv;
     }
 
+	@RequestMapping(value = "/emojiThemeRetrieve", method = RequestMethod.GET)
+    public ModelAndView emojiUserThemeRetrieve(String themeName) {
+    	EmojiFamily ef = emojiService.getEmojiFamily(themeName);
+        ModelAndView mv = new ModelAndView("emojiTheme", "emojiFamily", ef); // constructor takes model name, view name, model object
+        mv.addObject("themeNames", emojiService.emojiFamilyNames());
+        mv.addObject("ef", ef);
+        mv.addObject("emojiImg1", ef.emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
+        mv.addObject("emojiImg2", ef.emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
+        mv.addObject("emojiImg3", ef.emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
+        return mv;
+    }
+	
+	
     @RequestMapping(value = "/emojiThemeSave")
     public ModelAndView processUser(EmojiFamily emojiFamily, BindingResult result) {
         System.out.println("result.hasErrors(): " + result.hasErrors());
