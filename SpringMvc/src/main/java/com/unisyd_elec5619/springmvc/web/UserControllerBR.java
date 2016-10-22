@@ -81,9 +81,15 @@ public class UserControllerBR {
             efSet.add(new EmojiLevelImpl("testHigh19Oct", null, EmojiLevelEnum.HIGH));
             emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
             System.out.println(emojiService.getEmojiFamily().toString());
+            
+            for(String s: emojiService.emojiFamilyNames()){
+            	System.out.println("Emoji theme name: " + s);
+            }
+            
             mv.addObject("emojiImg1", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
             mv.addObject("emojiImg2", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
             mv.addObject("emojiImg3", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
+            mv.addObject("themeNames", emojiService.emojiFamilyNames());
         }
 
         return mv;

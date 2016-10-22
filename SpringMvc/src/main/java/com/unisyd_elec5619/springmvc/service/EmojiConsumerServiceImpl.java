@@ -2,6 +2,7 @@ package com.unisyd_elec5619.springmvc.service;
 
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public Set<String> getAllEmojiFamilyNames(){
 @Override
 public EmojiFamily getEmojiFamily(){
 	return emojiDao.getDefault();
+}
+
+@Override
+public List<String> emojiFamilyNames() {
+	return emojiDao.emojiFamilyNames();
 }
 
 }

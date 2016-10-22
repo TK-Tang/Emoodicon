@@ -4,8 +4,10 @@ package com.unisyd_elec5619.springmvc.dao;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
@@ -84,6 +86,15 @@ public class EmojiFamilyDaoJpaImpl implements EmojiFamilyDao {
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(EmojiFamily.class);
 		crit.add(Restrictions.eq("defaultEmoji", false));
 		return new HashSet<EmojiFamily>( crit.list());
+	}
+
+
+	@Override
+	public List emojiFamilyNames() {
+		String query;
+		query = "SELECT name FROM EmojiFamilyImpl";
+		Query queryResult = this.sessionFactory.getCurrentSession().createQuery(query);
+		 return new ArrayList<String>(queryResult.list());
 	}
 
 }
