@@ -43,7 +43,7 @@ public class EmojiThemeController {
 	
 
 	//@RequestMapping(value = "/", method = RequestMethod.GET)
-	@RequestMapping(value = "/emojiTheme", method = RequestMethod.GET)
+	@RequestMapping(value = "/emojiThemeNew", method = RequestMethod.GET)
     public ModelAndView emojiUserTheme() {
     	EmojiFamily ef = new EmojiFamilyImpl();
         ModelAndView mv = new ModelAndView("emojiTheme", "emojiFamily", ef); // constructor takes model name, view name, model object
@@ -66,35 +66,15 @@ public class EmojiThemeController {
 	
 	
     @RequestMapping(value = "/emojiThemeSave")
-    public ModelAndView processUser(EmojiFamily emojiFamily, BindingResult result) {
+    public ModelAndView processUser(EmojiFamily ef, BindingResult result) {
         System.out.println("result.hasErrors(): " + result.hasErrors());
         ModelAndView mv = new ModelAndView();
-        mv.addObject("ef", emojiFamily);
-        mv.addObject("themeNames", emojiService.emojiFamilyNames());
         
         if (result.hasErrors()) {
             mv.setViewName("emojiTheme");
         } else {
             mv.setViewName("emojiTheme");
-            emojiCreateUpdateService.addOrUpdateEmojiFamily(emojiFamily);
-            
-            // temp testing for emoji family
-            EmojiFamily ef = new EmojiFamilyImpl("TestEmojiFamily20Oct", false);
-            Set<EmojiEmotion> efSet = ef.emojiFamily();
-            efSet.add(new EmojiLevelImpl("testLow19Oct", null, EmojiLevelEnum.LOW));
-            efSet.add(new EmojiLevelImpl("testMed19Oct", null, EmojiLevelEnum.MEDIUM));
-            efSet.add(new EmojiLevelImpl("testHigh19Oct", null, EmojiLevelEnum.HIGH));
             emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
-            System.out.println(emojiService.getEmojiFamily().toString());
-            
-            for(String s: emojiService.emojiFamilyNames()){
-            	System.out.println("Emoji theme name: " + s);
-            }
-            
-            mv.addObject("emojiImg1", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
-            mv.addObject("emojiImg2", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
-            mv.addObject("emojiImg3", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
-            mv.addObject("themeNames", emojiService.emojiFamilyNames());
         }
 
         return mv;
