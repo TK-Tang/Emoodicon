@@ -78,6 +78,10 @@
 	<beans:bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<beans:bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+
 	<beans:bean id="userService"
 		class="com.unisyd_elec5619.springmvc.service.UserServiceImpl">
 		<beans:property name="userDao" ref="userDao" />
@@ -103,4 +107,6 @@
 		class="com.unisyd_elec5619.springmvc.web.ProjectViewController">
 		<beans:property name="projectManager" ref="projectManager" />
 	</beans:bean>
+	
+	
 </beans:beans>

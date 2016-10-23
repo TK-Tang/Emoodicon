@@ -34,7 +34,7 @@ public Set<EmojiFamily> getEmojiFamilies(){
 public Set<String> getAllEmojiFamilyNames(){
 	Set<String> allEmojiFamilyNames = new LinkedHashSet<String>();
 	for(EmojiFamily ef : emojiDao.getAll()){
-		allEmojiFamilyNames.add(ef.name());
+		allEmojiFamilyNames.add(ef.getName());
 	}
 	return allEmojiFamilyNames;
 }

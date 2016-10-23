@@ -43,15 +43,25 @@ public class EmojiThemeController {
 	
 
 	//@RequestMapping(value = "/", method = RequestMethod.GET)
-	@RequestMapping(value = "/emojiThemeNew", method = RequestMethod.GET)
+	@RequestMapping(value = "/emojiTheme", method = RequestMethod.GET)
     public ModelAndView emojiUserTheme() {
-    	EmojiFamily ef = new EmojiFamilyImpl();
-        ModelAndView mv = new ModelAndView("emojiTheme", "emojiFamily", ef); // constructor takes model name, view name, model object
+    	EmojiFamilyImpl ef = new EmojiFamilyImpl();
+        ModelAndView mv = new ModelAndView("emojiTheme2", "emojiFamilyImpl", ef); // constructor takes model name, view name, model object
         mv.addObject("themeNames", emojiService.emojiFamilyNames());
         mv.addObject("ef", ef);
         return mv;
     }
 
+	@RequestMapping(value = "/upload")
+	public ModelAndView upload(EmojiFamilyImpl ef){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("emojiTheme2");
+		modelAndView.addObject("ef", ef);
+		System.out.println("ef.toString(): " + ef.toString());
+		return modelAndView;
+	}
+	
+	
 	@RequestMapping(value = "/emojiThemeRetrieve", method = RequestMethod.GET)
     public ModelAndView emojiUserThemeRetrieve(String themeName) {
     	EmojiFamily ef = emojiService.getEmojiFamily(themeName);

@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.unisyd_elec5619.springmvc.users.enums.EmojiLevelEnum;
 
@@ -41,35 +42,51 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
-	String name;
+	private String name;
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	boolean defaultEmoji;
+	private transient MultipartFile file;
 	
+	@Override
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	@Override
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public void setDefaultEmoji(boolean defaultEmoji) {
+		this.defaultEmoji = defaultEmoji;
+	}
+
 	@OneToMany(fetch = FetchType.EAGER, targetEntity = EmojiLevelImpl.class,cascade=CascadeType.ALL)
 	@JoinColumn(name="family_id")
 	Set<EmojiEmotion> emojiFamily = new HashSet<EmojiEmotion>();
 	
 	@Override
-	public Set<EmojiEmotion> emojiFamily() {	
+	public Set<EmojiEmotion> getEmojiFamily() {	
 		return emojiFamily;
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public boolean isDefault() {
+	public boolean isDefaultEmoji() {
 		return defaultEmoji;
 	}
 
 	@Override
 	public String toString(){
-		Object[] emojiLevels = emojiFamily.toArray();
 		return "EmojiFamilyName: " + name + " Id: " + id + " Default: " + defaultEmoji + '\n'
-				+ ((EmojiEmotion)emojiLevels[0]).toString() + '\n'
-				+ ((EmojiEmotion)emojiLevels[1]).toString() + '\n'
-				+ ((EmojiEmotion)emojiLevels[2]).toString();
+				+ "multi part file size: " + file.getSize();
 	}
 	
 	@Override
@@ -81,8 +98,5 @@ public class EmojiFamilyImpl implements EmojiFamily {
 		return emojis;
 	}
 
-	@Override
-	public String isDefaultYorN() { 
-		return (defaultEmoji) ? "Y" : "N";
-	}
+	
 }

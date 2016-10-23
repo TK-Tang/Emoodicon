@@ -75,7 +75,7 @@ public class UserControllerBR {
             
             // temp testing for emoji family
             EmojiFamily ef = new EmojiFamilyImpl("TestEmojiFamily20Oct", false);
-            Set<EmojiEmotion> efSet = ef.emojiFamily();
+            Set<EmojiEmotion> efSet = ef.getEmojiFamily();
             efSet.add(new EmojiLevelImpl("testLow19Oct", null, EmojiLevelEnum.LOW));
             efSet.add(new EmojiLevelImpl("testMed19Oct", null, EmojiLevelEnum.MEDIUM));
             efSet.add(new EmojiLevelImpl("testHigh19Oct", null, EmojiLevelEnum.HIGH));
