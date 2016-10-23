@@ -4,6 +4,8 @@ package com.unisyd_elec5619.springmvc.web;
 import org.hibernate.classic.Session;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,7 +46,17 @@ public class EmojiThemeController {
     public ModelAndView emojiUserTheme() {
     	EmojiFamilyImpl ef = new EmojiFamilyImpl();
         ModelAndView mv = new ModelAndView("emojiTheme2", "emojiFamilyImpl", ef); // constructor takes model name, view name, model object
-        mv.addObject("listThemes", new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies()));
+        
+        ArrayList<EmojiFamily> listThemes = new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies());
+        
+        Collections.sort(listThemes, new Comparator<EmojiFamily>(){
+			@Override
+			public int compare(EmojiFamily o1, EmojiFamily o2) {
+				return o1.getId() - o2.getId();
+			}
+        	});
+        
+        mv.addObject("listThemes", listThemes);
         mv.addObject("ef", ef);
         return mv;
     }

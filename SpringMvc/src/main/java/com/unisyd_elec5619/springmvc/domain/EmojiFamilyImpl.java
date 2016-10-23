@@ -4,7 +4,9 @@ package com.unisyd_elec5619.springmvc.domain;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -28,6 +30,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.unisyd_elec5619.springmvc.users.enums.EmojiLevelEnum;
@@ -46,6 +49,15 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
+	@Override
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String name;
 	public void setName(String name) {
 		this.name = name;
@@ -59,6 +71,14 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	
 	@Lob
 	private byte[] emojiImageLow;
+	public byte[] getEmojiImageLow() {
+		return emojiImageLow;
+	}
+
+	public void setEmojiImageLow(byte[] emojiImageLow) {
+		this.emojiImageLow = emojiImageLow;
+	}
+
 	@Lob
 	private byte[] emojiImageMed;
 	@Lob
@@ -132,6 +152,32 @@ public class EmojiFamilyImpl implements EmojiFamily {
 		emojis.put(EmojiLevelEnum.MEDIUM, emojiImageMed);
 		emojis.put(EmojiLevelEnum.HIGH, emojiImageHigh);
 		return emojis;
+	}
+	
+	
+	public static String base64EncodedImage(byte[] emojiImage){
+		// Code adapted from Stack Exchange http://stackoverflow.com/questions/26585804/show-image-on-jsp-with-spring-mvc-and-hibernate
+		byte[] encodeBase64 = Base64Utils.encode(emojiImage);
+		String base64Encoded = "";
+		try {
+		base64Encoded = new String(encodeBase64, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+		e.printStackTrace();
+		}
+		// End adapted code
+		return base64Encoded;
+		}	
+	
+	public String getBase64EncodedImageLow(){
+		return base64EncodedImage(emojiImageLow);
+	}
+	
+	public String getBase64EncodedImageMed(){
+		return base64EncodedImage(emojiImageMed);
+	}
+	
+	public String getBase64EncodedImageHigh(){
+		return base64EncodedImage(emojiImageHigh);
 	}
 	
 	

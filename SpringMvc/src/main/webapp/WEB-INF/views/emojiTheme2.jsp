@@ -101,5 +101,41 @@
 		</table>
 	</form:form>
 
+<br>
+<h3>Emoji Family List</h3>
+<c:if test="${!empty listThemes}">
+	<table class="tg">
+	<tr>
+		<th width="80">Emoji ID</th>
+		<th width="120">Emoji Name</th>
+		<th width="120">Default</th>
+		<th width="120">Low</th>
+		<th width="120">Med</th>
+		<th width="120">High</th>
+		<th width="60">Edit</th>
+		<th width="60">Delete</th>
+	</tr>
+	<c:forEach items="${listThemes}" var="theme">
+		<tr>
+			<td>${theme.id}</td>
+			<td>${theme.name}</td>
+			<td>${theme.defaultEmoji}</td>
+			<td>
+				<img src="data:image/jpeg;charset=utf-8;base64,${theme.base64EncodedImageLow}"/>
+			</td>
+			<td>
+				<img src="data:image/jpeg;charset=utf-8;base64,${theme.base64EncodedImageMed}"/>
+			</td>
+			<td>
+				<img src="data:image/jpeg;charset=utf-8;base64,${theme.base64EncodedImageHigh}"/>
+			</td>
+			<td><a href="<c:url value='/edit/${theme.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${theme.id}' />" >Delete</a></td>
+		</tr>
+	</c:forEach>
+	</table>
+</c:if>
+
+
 </body>
 </html>
