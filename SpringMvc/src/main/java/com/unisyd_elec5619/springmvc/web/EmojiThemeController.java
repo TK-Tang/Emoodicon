@@ -44,7 +44,7 @@ public class EmojiThemeController {
     public ModelAndView emojiUserTheme() {
     	EmojiFamilyImpl ef = new EmojiFamilyImpl();
         ModelAndView mv = new ModelAndView("emojiTheme2", "emojiFamilyImpl", ef); // constructor takes model name, view name, model object
-        mv.addObject("themeNames", emojiService.emojiFamilyNames());
+        mv.addObject("listThemes", new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies()));
         mv.addObject("ef", ef);
         return mv;
     }
