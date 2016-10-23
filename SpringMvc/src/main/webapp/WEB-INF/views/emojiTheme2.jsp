@@ -3,6 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
 
+ <%-- Code adapted from http://www.journaldev.com/3531/spring-mvc-hibernate-mysql-integration-crud-example-tutorial --%>
+
 <html>
 <head>
 <title>Emoji Themes</title>
@@ -48,11 +50,11 @@
 <body>
 	<h1>Add an emoji theme</h1>
 
-	<c:url var="addAction" value="upload"></c:url>
+	<c:url var="addAction" value="/upload"></c:url>
 
 	<form:form modelAttribute="emojiFamilyImpl" action="${addAction}" enctype="multipart/form-data">
 		<table>
-			<c:if test="${!empty name}">
+			<c:if test="${!empty emojiFamilyImpl.name}">
 				<tr>
 					<td><form:label path="id">
 							<spring:message text="ID" />
@@ -75,26 +77,26 @@
 			</tr>
 			<tr>
 				<td><form:label path="fileLowMood">
-						<spring:message text="Low mood image" />
+						<spring:message text="Low mood image (jpg file)" />
 					</form:label></td>
 				<td><form:input type="file" path="fileLowMood"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="fileMedMood">
-						<spring:message text="Medium mood image" />
+						<spring:message text="Medium mood image (jpg file)" />
 					</form:label></td>
 				<td><form:input type="file" path="fileMedMood"/></td>
 			</tr>
 				<tr>
 				<td><form:label path="fileHighMood">
-						<spring:message text="High mood image" />
+						<spring:message text="High mood image (jpg file)" />
 					</form:label></td>
 				<td><form:input type="file" path="fileHighMood"/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${!empty emojiTheme.name}">
+				<td colspan="2"><c:if test="${!empty emojiFamilyImpl.name}">
 						<input type="submit" value="<spring:message text="Edit emoji theme"/>" />
-					</c:if> <c:if test="${empty person.name}">
+					</c:if> <c:if test="${empty emojiFamilyImpl.name}">
 						<input type="submit" value="<spring:message text="Add emoji theme"/>" />
 					</c:if></td>
 			</tr>

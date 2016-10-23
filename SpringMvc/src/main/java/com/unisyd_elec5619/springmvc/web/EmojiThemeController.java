@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,14 +64,14 @@ public class EmojiThemeController {
         return mv;
     }
 
-	@RequestMapping(value = "/upload")
-	public ModelAndView upload(EmojiFamilyImpl ef){
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public ModelAndView upload(@ModelAttribute("emojiFamilyImpl") EmojiFamilyImpl ef){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("emojiTheme2");
-		modelAndView.addObject("ef", ef);
+		modelAndView.addObject("emojiFamilyImpl", ef);
 		System.out.println("ef.toString(): " + ef.toString());
 		emojiCRUDService.addOrUpdateEmojiFamily(ef);
-		return modelAndView;
+		return new ModelAndView("redirect:/emojiTheme");
 	}
 	
 	@RequestMapping(value = "/emojiThemeDelete/{id}")
@@ -104,19 +105,12 @@ public class EmojiThemeController {
 		
 	}
 	
-    @RequestMapping(value = "/emojiThemeSave")
-    public ModelAndView processUser(EmojiFamily ef, BindingResult result) {
-        System.out.println("result.hasErrors(): " + result.hasErrors());
+    @RequestMapping(value = "/emojiThemeSave", method = RequestMethod.POST)
+    public ModelAndView addEmojiFamily(@ModelAttribute("emojiFamilyImpl") EmojiFamilyImpl ef, BindingResult result) {
         ModelAndView mv = new ModelAndView();
-        
-        if (result.hasErrors()) {
-            mv.setViewName("emojiTheme");
-        } else {
-            mv.setViewName("emojiTheme");
-            emojiCRUDService.addOrUpdateEmojiFamily(ef);
-        }
-
-        return mv;
+        mv.setViewName("emojiTheme2");
+        emojiCRUDService.addOrUpdateEmojiFamily(ef);
+        return new ModelAndView("redirect:/emojiTheme");
     }
 
 	
