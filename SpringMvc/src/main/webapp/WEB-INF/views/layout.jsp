@@ -73,7 +73,7 @@
 	                			<li>
 			                        <a href="#">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.description}" />
+			                            <c:out value="${proj.name}" />
 			                        </a>
 			                    </li>
 	                		<%-- </c:when>
@@ -132,8 +132,8 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                <li class="active">Dashboard</li>
+                <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li class="active">Page Title</li>
             </ol>
         </div><!--/.row-->
         
