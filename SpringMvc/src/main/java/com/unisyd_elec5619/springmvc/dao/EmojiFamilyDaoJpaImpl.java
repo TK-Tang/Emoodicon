@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unisyd_elec5619.springmvc.domain.EmojiFamily;
+import com.unisyd_elec5619.springmvc.domain.EmojiFamilyImpl;
 import com.unisyd_elec5619.springmvc.domain.UserBR;
 
 @Repository("emojiFamilyDao")
@@ -69,6 +70,13 @@ public class EmojiFamilyDaoJpaImpl implements EmojiFamilyDao {
 		return new HashSet<EmojiFamily>(this.sessionFactory.getCurrentSession().createCriteria(EmojiFamily.class).list());
 	}
 
+	@Override
+	public EmojiFamily getEmojiFamilyById(Long id){
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(EmojiFamily.class);
+		crit.add(Restrictions.eq("id", id.intValue()));
+		return (EmojiFamily) crit.list().get(0);
+	}
+	
 	@Override
 	public void saveOrUpdate(EmojiFamily emojiFamily) {
 		this.sessionFactory.getCurrentSession().saveOrUpdate(emojiFamily);

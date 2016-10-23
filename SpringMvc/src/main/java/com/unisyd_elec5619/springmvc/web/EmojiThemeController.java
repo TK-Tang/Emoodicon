@@ -73,19 +73,6 @@ public class EmojiThemeController {
 		return modelAndView;
 	}
 	
-	
-	@RequestMapping(value = "/emojiThemeRetrieve", method = RequestMethod.GET)
-    public ModelAndView emojiUserThemeRetrieve(String themeName) {
-    	EmojiFamily ef = emojiService.getEmojiFamily(themeName);
-        ModelAndView mv = new ModelAndView("emojiTheme", "emojiFamily", ef); // constructor takes model name, view name, model object
-        mv.addObject("themeNames", emojiService.emojiFamilyNames());
-        mv.addObject("ef", ef);
-       // mv.addObject("emojiImg1", ef.emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
-       // mv.addObject("emojiImg2", ef.emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
-       // mv.addObject("emojiImg3", ef.emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
-        return mv;
-    }
-	
 	@RequestMapping(value = "/emojiThemeDelete/{id}")
     public ModelAndView deleteTheme(@PathVariable("id") long id) {
 		emojiCRUDService.delete(id);
@@ -93,7 +80,29 @@ public class EmojiThemeController {
 		return new ModelAndView("redirect:/emojiTheme");
 	}
 	
-	
+	@RequestMapping(value = "/emojiThemeUpdate/{id}")
+	public ModelAndView updateTheme(@PathVariable("id") long id) {
+		System.out.println("/emojiThemeUpdate/{id} called id: " + id);
+		EmojiFamilyImpl ef = (EmojiFamilyImpl) emojiService.getEmojiFamilyById(id);
+		
+		System.out.println(emojiService.getEmojiFamilyById(id).getName());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("emojiTheme2");
+		mv.addObject("emojiFamilyImpl", ef);
+		
+		  ArrayList<EmojiFamily> listThemes = new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies());
+	        
+	        Collections.sort(listThemes, new Comparator<EmojiFamily>(){
+				@Override
+				public int compare(EmojiFamily o1, EmojiFamily o2) {
+					return o1.getId() - o2.getId();
+				}
+	        	});
+	        
+	        mv.addObject("listThemes", listThemes);
+		return mv;
+		
+	}
 	
     @RequestMapping(value = "/emojiThemeSave")
     public ModelAndView processUser(EmojiFamily ef, BindingResult result) {

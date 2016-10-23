@@ -129,8 +129,8 @@
 			<td>
 				<img src="data:image/jpeg;charset=utf-8;base64,${theme.base64EncodedImageHigh}"/>
 			</td>
-			<td><a href="<c:url value='/edit/${theme.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${theme.id}' />" >Delete</a></td>
+			<td><a href="<c:url value='/emojiThemeUpdate/${theme.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/emojiThemeDelete/${theme.id}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>

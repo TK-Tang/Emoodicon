@@ -12,4 +12,5 @@ public interface EmojiFamilyDao {
 	public Set<EmojiFamily> getNonDefaults();
 	public List emojiFamilyNames();
 	public void delete(long id);
+	public EmojiFamily getEmojiFamilyById(Long id);
 }

@@ -49,5 +49,10 @@ public List<String> emojiFamilyNames() {
 	return emojiDao.emojiFamilyNames();
 }
 
+@Override
+public EmojiFamily getEmojiFamilyById(long id){
+	return emojiDao.getEmojiFamilyById(id);
+}
+
 }
 

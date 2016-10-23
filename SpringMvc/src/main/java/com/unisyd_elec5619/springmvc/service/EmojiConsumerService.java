@@ -18,6 +18,8 @@ public interface EmojiConsumerService {
 
 	List<String> emojiFamilyNames();
 
+	EmojiFamily getEmojiFamilyById(long id);
+
 	// get all emoji family names
 	// 
 	
