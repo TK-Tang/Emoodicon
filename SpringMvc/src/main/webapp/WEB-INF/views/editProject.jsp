@@ -9,19 +9,33 @@
 	</head>
 	<body>
 		<h1>You can edit the product shown below</h1>
+		<a href="/springmvc/projectList.htm">Project list view Page</a>
+	
 		<sf:form method="POST" modelAttribute="project">
 			<fieldset>
 				<table>
+					<tr>
+						<th>Project Title:</th>
+						<td><sf:input path="name"/></td>
+					</tr>
 					<tr>
 						<th><label for="project_description">Description:</label></th>
 						<td><sf:input path="description"/></td>
 					</tr>
 					<tr>
 						<th><label for="project_price">Price</label></th>
-						<td><sf:input path="price"/></td>
+						<td><sf:input type="number" path="price"/></td>
 					</tr>
 					<tr>
-						<th><a href="hello.htm"><button>Cancel</button></a></th>
+						<th>Project Start Date:</th>
+						<td><sf:input type="date" placeholder="" path="projectStartDate"/></td>
+					</tr>
+					<tr>
+						<th>Project Deadline:</th>
+						<td><sf:input type="date" placeholder="" path="projectDeadline"/></td>
+					</tr>
+					<tr>
+						<th><button type="reset">Reset</button></th>
 						<!-- This hidden field is required for Hibernate to recognize this Product -->
 						<td><sf:hidden path="id"/>
 						<td><input type="submit" value="Done"/></td>

@@ -10,8 +10,11 @@
 	<body>
 		<h1>Hi, you can add a new project on this page</h1>
 		<form action="add" method="post">
+			Name: <input type="text" name="name"/>
 			Description: <input type="text" name="description"/>
-			Price: <input type="text" name="price"/>
+			Price: <input type="number" name="price"/>
+			Project Start Date: <input type="date" name="projectStartDate"/>
+			Project Deadline: <input type="date" name="projectDeadline"/>
 			<input type="submit" value="Add"/>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
