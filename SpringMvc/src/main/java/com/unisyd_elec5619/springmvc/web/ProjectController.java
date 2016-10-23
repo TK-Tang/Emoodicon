@@ -27,6 +27,7 @@ public class ProjectController {
 	@RequestMapping(value="/add")
 	public String addProject(Model uiModel) {
 		System.out.println("Returning add.jsp");
+		uiModel.addAttribute("projects", this.projectManager.getProjects());
 		return "add";
 	}
 	
@@ -75,7 +76,7 @@ public class ProjectController {
 		
 		this.projectManager.addProject(project);
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
@@ -91,6 +92,7 @@ public class ProjectController {
 			project.setProjectDeadlineDefault();
 		}
 		uiModel.addAttribute("project", project);
+		uiModel.addAttribute("projects", this.projectManager.getProjects());
 		
 		return "editProject";
 	}
@@ -109,6 +111,6 @@ public class ProjectController {
 
 		this.projectManager.deleteProject(id);
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/";
 	}
 }

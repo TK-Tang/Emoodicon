@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
 import com.unisyd_elec5619.springmvc.service.UserServiceImpl;
 import com.unisyd_elec5619.springmvc.users.enums.Country;
 import com.unisyd_elec5619.springmvc.users.enums.Gender;
@@ -38,6 +40,9 @@ public class UserController {
 	private UserServiceImpl userService;
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
+	@Resource(name="projectManager")
+	private DatabaseProjectManager projectManager;
 	
 	
 	@RequestMapping(value = "/usersettings", method = RequestMethod.GET)
@@ -53,6 +58,7 @@ public class UserController {
 		mv.addObject("username", name);
 		mv.addObject("genders", Gender.values());
 		mv.addObject("countries", Country.values());
+		mv.addObject("projects", this.projectManager.getProjects());
 		
 		return mv;
 	}
@@ -71,6 +77,7 @@ public class UserController {
 
 		mv.addObject("genders", Gender.values());
 		mv.addObject("countries", Country.values());
+		mv.addObject("projects", this.projectManager.getProjects());
 	    
 	    return mv;
 	}

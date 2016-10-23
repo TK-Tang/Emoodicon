@@ -73,7 +73,7 @@
 	                			<li>
 			                        <a href="#">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.description}" />
+			                            <c:out value="${proj.name}" />
 			                        </a>
 			                    </li>
 	                		</c:when>
@@ -81,7 +81,7 @@
 	                			<li class="active-project">
 			                        <a href="#">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.description}" />
+			                            <c:out value="${proj.name}" />
 			                        </a>
 			                    </li>
 	                		</c:otherwise>
@@ -139,7 +139,7 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header">${projects[0].description}</h1>
+                <h1 class="page-header">${projects[0].name}</h1>
                 <p>Project Manager: 
                     <span class="project-manager">Ken Nichols</span> 
                 </p>

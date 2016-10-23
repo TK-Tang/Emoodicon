@@ -993,3 +993,13 @@ body.user-settings form#user tbody td label{
 body.user-settings form#user tbody td span label{
 	margin-left: 10px;
 }
+
+/* Create Project */
+body.create-project form#createProject div{
+	margin-bottom: 10px;
+}
+
+/* Edit Project */
+body.edit-project form#editProject div{
+	margin-bottom: 10px;
+}

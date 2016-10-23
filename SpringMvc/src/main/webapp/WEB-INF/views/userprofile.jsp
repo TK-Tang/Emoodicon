@@ -74,7 +74,7 @@
                                 <li>
                                     <a href="#">
                                         <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-                                        <c:out value="${proj.description}" />
+                                        <c:out value="${proj.name}" />
                                     </a>
                                 </li>
                             <%-- </c:when>
