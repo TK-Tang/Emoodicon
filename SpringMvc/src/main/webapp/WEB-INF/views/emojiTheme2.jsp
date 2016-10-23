@@ -74,10 +74,22 @@
 				<td><form:checkbox path="defaultEmoji" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="file">
+				<td><form:label path="fileLowMood">
 						<spring:message text="Low mood image" />
 					</form:label></td>
-				<td><form:input type="file" path="file"/></td>
+				<td><form:input type="file" path="fileLowMood"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="fileMedMood">
+						<spring:message text="Medium mood image" />
+					</form:label></td>
+				<td><form:input type="file" path="fileMedMood"/></td>
+			</tr>
+				<tr>
+				<td><form:label path="fileHighMood">
+						<spring:message text="High mood image" />
+					</form:label></td>
+				<td><form:input type="file" path="fileHighMood"/></td>
 			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty emojiTheme.name}">

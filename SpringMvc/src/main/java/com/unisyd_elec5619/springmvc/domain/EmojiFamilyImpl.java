@@ -1,6 +1,9 @@
 package com.unisyd_elec5619.springmvc.domain;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,6 +21,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.MapKeyEnumerated;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
@@ -48,16 +52,46 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	}
 
 	boolean defaultEmoji;
-	private transient MultipartFile file;
 	
-	@Override
-	public MultipartFile getFile() {
-		return file;
+	private transient MultipartFile fileLowMood;
+	private transient MultipartFile fileMedMood;
+	private transient MultipartFile fileHighMood;
+	
+	@Lob
+	private byte[] emojiImageLow;
+	
+	
+	public MultipartFile getFileHighMood() {
+		return fileHighMood;
+	}
+
+	public void setFileHighMood(MultipartFile fileHighMood) {
+		this.fileHighMood = fileHighMood;
+	}
+
+	public MultipartFile getFileMedMood() {
+		return fileMedMood;
+	}
+
+	public void setFileMedMood(MultipartFile fileMedMood) {
+		this.fileMedMood = fileMedMood;
 	}
 
 	@Override
-	public void setFile(MultipartFile file) {
-		this.file = file;
+	public MultipartFile getFileLowMood() {
+		return fileLowMood;
+	}
+
+	@Override
+	public void setFileLowMood(MultipartFile file) {
+		this.fileLowMood = file;
+		
+			try {
+				emojiImageLow =  file.getBytes();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
 	}
 
 	public void setDefaultEmoji(boolean defaultEmoji) {
@@ -86,7 +120,7 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	@Override
 	public String toString(){
 		return "EmojiFamilyName: " + name + " Id: " + id + " Default: " + defaultEmoji + '\n'
-				+ "multi part file size: " + file.getSize();
+				+ "multi part file size: " + fileLowMood.getSize();
 	}
 	
 	@Override
@@ -97,6 +131,17 @@ public class EmojiFamilyImpl implements EmojiFamily {
 		}
 		return emojis;
 	}
-
+	
+	// code from http://stackoverflow.com/questions/24339990/how-to-convert-a-multipart-file-to-file
+	public File convert(MultipartFile file) throws IOException
+	{   
+	    File convFile = new File(file.getOriginalFilename());
+	    convFile.createNewFile(); 
+	    FileOutputStream fos = new FileOutputStream(convFile); 
+	    fos.write(file.getBytes());
+	    fos.close(); 
+	    return convFile;
+	}
+	// end code from http://stackoverflow.com/questions/24339990/how-to-convert-a-multipart-file-to-file
 	
 }

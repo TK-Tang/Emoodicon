@@ -13,6 +13,6 @@ public interface EmojiFamily {
 	public String getName();
 	public boolean isDefaultEmoji();
 	Map<EmojiLevelEnum, EmojiEmotion> emojis();
-	MultipartFile getFile();
-	void setFile(MultipartFile file);
+	MultipartFile getFileLowMood();
+	void setFileLowMood(MultipartFile file);
 }

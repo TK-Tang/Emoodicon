@@ -58,6 +58,7 @@ public class EmojiThemeController {
 		modelAndView.setViewName("emojiTheme2");
 		modelAndView.addObject("ef", ef);
 		System.out.println("ef.toString(): " + ef.toString());
+		emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
 		return modelAndView;
 	}
 	
