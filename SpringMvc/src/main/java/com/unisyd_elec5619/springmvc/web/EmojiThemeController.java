@@ -19,11 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.unisyd_elec5619.springmvc.domain.EmojiEmotion;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamily;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamilyImpl;
-import com.unisyd_elec5619.springmvc.domain.EmojiLevelImpl;
 import com.unisyd_elec5619.springmvc.domain.UserBR;
 import com.unisyd_elec5619.springmvc.service.EmojiConsumerService;
 import com.unisyd_elec5619.springmvc.service.EmojiCreateUpdateService;
@@ -69,9 +66,9 @@ public class EmojiThemeController {
         ModelAndView mv = new ModelAndView("emojiTheme", "emojiFamily", ef); // constructor takes model name, view name, model object
         mv.addObject("themeNames", emojiService.emojiFamilyNames());
         mv.addObject("ef", ef);
-        mv.addObject("emojiImg1", ef.emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
-        mv.addObject("emojiImg2", ef.emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
-        mv.addObject("emojiImg3", ef.emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
+       // mv.addObject("emojiImg1", ef.emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
+       // mv.addObject("emojiImg2", ef.emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
+       // mv.addObject("emojiImg3", ef.emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
         return mv;
     }
 	

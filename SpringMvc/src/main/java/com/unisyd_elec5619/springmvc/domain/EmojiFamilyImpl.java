@@ -59,52 +59,54 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	
 	@Lob
 	private byte[] emojiImageLow;
+	@Lob
+	private byte[] emojiImageMed;
+	@Lob
+	private byte[] emojiImageHigh;
 	
 	
 	public MultipartFile getFileHighMood() {
 		return fileHighMood;
 	}
 
-	public void setFileHighMood(MultipartFile fileHighMood) {
-		this.fileHighMood = fileHighMood;
+	public void setFileHighMood(MultipartFile file) {
+		this.fileHighMood = file;
+		try {
+			emojiImageHigh =  file.getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
 	}
 
 	public MultipartFile getFileMedMood() {
 		return fileMedMood;
 	}
 
-	public void setFileMedMood(MultipartFile fileMedMood) {
-		this.fileMedMood = fileMedMood;
+	public void setFileMedMood(MultipartFile file) {
+		this.fileMedMood = file;
+		try {
+			emojiImageMed =  file.getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	@Override
 	public MultipartFile getFileLowMood() {
 		return fileLowMood;
 	}
 
-	@Override
 	public void setFileLowMood(MultipartFile file) {
 		this.fileLowMood = file;
-		
 			try {
 				emojiImageLow =  file.getBytes();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
 	}
 
 	public void setDefaultEmoji(boolean defaultEmoji) {
 		this.defaultEmoji = defaultEmoji;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, targetEntity = EmojiLevelImpl.class,cascade=CascadeType.ALL)
-	@JoinColumn(name="family_id")
-	Set<EmojiEmotion> emojiFamily = new HashSet<EmojiEmotion>();
-	
-	@Override
-	public Set<EmojiEmotion> getEmojiFamily() {	
-		return emojiFamily;
 	}
 
 	@Override
@@ -124,24 +126,13 @@ public class EmojiFamilyImpl implements EmojiFamily {
 	}
 	
 	@Override
-	public Map<EmojiLevelEnum,EmojiEmotion> emojis(){
-		Map<EmojiLevelEnum,EmojiEmotion> emojis = new HashMap<EmojiLevelEnum,EmojiEmotion>();
-		for (EmojiEmotion ee : emojiFamily) {
-			emojis.put(ee.emojiLevel(), ee);
-		}
+	public Map<EmojiLevelEnum,byte[]> emojiImages(){
+		Map<EmojiLevelEnum,byte[]> emojis = new HashMap<EmojiLevelEnum,byte[]>();
+		emojis.put(EmojiLevelEnum.LOW, emojiImageLow);
+		emojis.put(EmojiLevelEnum.MEDIUM, emojiImageMed);
+		emojis.put(EmojiLevelEnum.HIGH, emojiImageHigh);
 		return emojis;
 	}
 	
-	// code from http://stackoverflow.com/questions/24339990/how-to-convert-a-multipart-file-to-file
-	public File convert(MultipartFile file) throws IOException
-	{   
-	    File convFile = new File(file.getOriginalFilename());
-	    convFile.createNewFile(); 
-	    FileOutputStream fos = new FileOutputStream(convFile); 
-	    fos.write(file.getBytes());
-	    fos.close(); 
-	    return convFile;
-	}
-	// end code from http://stackoverflow.com/questions/24339990/how-to-convert-a-multipart-file-to-file
 	
 }

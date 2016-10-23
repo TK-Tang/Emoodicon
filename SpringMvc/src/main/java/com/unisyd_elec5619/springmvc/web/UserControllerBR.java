@@ -19,11 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.unisyd_elec5619.springmvc.domain.EmojiEmotion;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamily;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamilyImpl;
-import com.unisyd_elec5619.springmvc.domain.EmojiLevelImpl;
 import com.unisyd_elec5619.springmvc.domain.UserBR;
 import com.unisyd_elec5619.springmvc.service.EmojiConsumerService;
 import com.unisyd_elec5619.springmvc.service.EmojiCreateUpdateService;
@@ -75,10 +72,10 @@ public class UserControllerBR {
             
             // temp testing for emoji family
             EmojiFamily ef = new EmojiFamilyImpl("TestEmojiFamily20Oct", false);
-            Set<EmojiEmotion> efSet = ef.getEmojiFamily();
-            efSet.add(new EmojiLevelImpl("testLow19Oct", null, EmojiLevelEnum.LOW));
-            efSet.add(new EmojiLevelImpl("testMed19Oct", null, EmojiLevelEnum.MEDIUM));
-            efSet.add(new EmojiLevelImpl("testHigh19Oct", null, EmojiLevelEnum.HIGH));
+            //Set<EmojiEmotion> efSet = ef.getEmojiFamily();
+            //efSet.add(new EmojiLevelImpl("testLow19Oct", null, EmojiLevelEnum.LOW));
+            //efSet.add(new EmojiLevelImpl("testMed19Oct", null, EmojiLevelEnum.MEDIUM));
+            //efSet.add(new EmojiLevelImpl("testHigh19Oct", null, EmojiLevelEnum.HIGH));
             emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
             System.out.println(emojiService.getEmojiFamily().toString());
             
@@ -86,10 +83,10 @@ public class UserControllerBR {
             	System.out.println("Emoji theme name: " + s);
             }
             
-            mv.addObject("emojiImg1", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
-            mv.addObject("emojiImg2", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
-            mv.addObject("emojiImg3", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
-            mv.addObject("themeNames", emojiService.emojiFamilyNames());
+            //mv.addObject("emojiImg1", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.LOW).base64EncodedImage());
+            //mv.addObject("emojiImg2", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.MEDIUM).base64EncodedImage());
+            //mv.addObject("emojiImg3", emojiService.getEmojiFamily().emojis().get(EmojiLevelEnum.HIGH).base64EncodedImage());
+            //mv.addObject("themeNames", emojiService.emojiFamilyNames());
         }
 
         return mv;

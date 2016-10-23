@@ -77,7 +77,7 @@ public class EmojiFamilyDaoJpaImpl implements EmojiFamilyDao {
 	public EmojiFamily getDefault() {
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(EmojiFamily.class);
 		crit.add(Restrictions.eq("defaultEmoji", true));
-		return (EmojiFamily) crit.list().get(0);
+		return (EmojiFamily) crit.list().get(0);// there should only ever be one default
 	}
 	
 	@SuppressWarnings("unchecked")
