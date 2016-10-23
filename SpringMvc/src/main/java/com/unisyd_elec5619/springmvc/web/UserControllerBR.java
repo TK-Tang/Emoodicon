@@ -23,7 +23,7 @@ import com.unisyd_elec5619.springmvc.domain.EmojiFamily;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamilyImpl;
 import com.unisyd_elec5619.springmvc.domain.UserBR;
 import com.unisyd_elec5619.springmvc.service.EmojiConsumerService;
-import com.unisyd_elec5619.springmvc.service.EmojiCreateUpdateService;
+import com.unisyd_elec5619.springmvc.service.EmojiCRUDService;
 import com.unisyd_elec5619.springmvc.service.UserServiceBR;
 import com.unisyd_elec5619.springmvc.users.enums.EmojiLevelEnum;
 import com.unisyd_elec5619.springmvc.users.enums.Country;
@@ -39,7 +39,7 @@ public class UserControllerBR {
 	private EmojiConsumerService emojiService;
 	
 	@Autowired
-	private EmojiCreateUpdateService emojiCreateUpdateService;
+	private EmojiCRUDService emojiCreateUpdateService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserControllerBR.class);
 	

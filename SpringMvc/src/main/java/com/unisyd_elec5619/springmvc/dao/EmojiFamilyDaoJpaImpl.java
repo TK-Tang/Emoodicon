@@ -46,9 +46,11 @@ public class EmojiFamilyDaoJpaImpl implements EmojiFamilyDao {
 		
 	}
 
-	public void delete(long userId) {
-		// TODO Auto-generated method stub
-		
+	public void delete(long id) {
+		String query;
+		query = "DELETE FROM EmojiFamilyImpl WHERE id=" + id;
+		Query queryResult = this.sessionFactory.getCurrentSession().createQuery(query);
+		queryResult.executeUpdate();
 	}
 
 	public UserBR find(long userId) {

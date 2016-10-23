@@ -18,14 +18,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamily;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamilyImpl;
 import com.unisyd_elec5619.springmvc.domain.UserBR;
 import com.unisyd_elec5619.springmvc.service.EmojiConsumerService;
-import com.unisyd_elec5619.springmvc.service.EmojiCreateUpdateService;
+import com.unisyd_elec5619.springmvc.service.EmojiCRUDService;
 import com.unisyd_elec5619.springmvc.service.UserServiceBR;
 import com.unisyd_elec5619.springmvc.users.enums.EmojiLevelEnum;
 import com.unisyd_elec5619.springmvc.users.enums.Country;
@@ -38,7 +40,7 @@ public class EmojiThemeController {
 	private EmojiConsumerService emojiService;
 	
 	@Autowired
-	private EmojiCreateUpdateService emojiCreateUpdateService;
+	private EmojiCRUDService emojiCRUDService;
 	
 
 	//@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -67,7 +69,7 @@ public class EmojiThemeController {
 		modelAndView.setViewName("emojiTheme2");
 		modelAndView.addObject("ef", ef);
 		System.out.println("ef.toString(): " + ef.toString());
-		emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
+		emojiCRUDService.addOrUpdateEmojiFamily(ef);
 		return modelAndView;
 	}
 	
@@ -84,6 +86,14 @@ public class EmojiThemeController {
         return mv;
     }
 	
+	@RequestMapping(value = "/emojiThemeDelete/{id}")
+    public ModelAndView deleteTheme(@PathVariable("id") long id) {
+		emojiCRUDService.delete(id);
+		System.out.println("emojiCRUDService.delete(" + id + ")");
+		return new ModelAndView("redirect:/emojiTheme");
+	}
+	
+	
 	
     @RequestMapping(value = "/emojiThemeSave")
     public ModelAndView processUser(EmojiFamily ef, BindingResult result) {
@@ -94,7 +104,7 @@ public class EmojiThemeController {
             mv.setViewName("emojiTheme");
         } else {
             mv.setViewName("emojiTheme");
-            emojiCreateUpdateService.addOrUpdateEmojiFamily(ef);
+            emojiCRUDService.addOrUpdateEmojiFamily(ef);
         }
 
         return mv;

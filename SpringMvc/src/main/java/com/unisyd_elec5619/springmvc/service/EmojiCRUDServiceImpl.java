@@ -7,7 +7,7 @@ import com.unisyd_elec5619.springmvc.dao.EmojiFamilyDao;
 import com.unisyd_elec5619.springmvc.domain.EmojiFamily;
 
 @Service
-public class EmojiCreateUpdateServiceImpl implements EmojiCreateUpdateService {
+public class EmojiCRUDServiceImpl implements EmojiCRUDService {
 	
 	private EmojiFamilyDao emojiDao;
 
@@ -19,6 +19,11 @@ public class EmojiCreateUpdateServiceImpl implements EmojiCreateUpdateService {
 	@Override
 	public void addOrUpdateEmojiFamily(EmojiFamily emojiFamily){
 		emojiDao.saveOrUpdate(emojiFamily);
+	}
+
+	@Override
+	public void delete(long id) {
+		emojiDao.delete(id);
 	}
 
 }
