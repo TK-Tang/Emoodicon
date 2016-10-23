@@ -5,13 +5,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!--  Something wrong with these paths up here -->
 <link href=" <c:url value="/resources/css/theme.css" />" rel="stylesheet">
 
 <script type="text/javascript" src="<c:url value="/resources/script/jquery.js"/>"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	// $() is a function.
 	// document refers to Jquery's main document
@@ -45,7 +43,7 @@
 		var password = $("#password").val();
 		var confirmPassword = $("#confirmpassword").val();
 
-		if (password.length > 7 && confirmPassword.length > 7) {
+		if (password.length > 6 && confirmPassword.length > 6) {
 
 			if (password == confirmPassword) {
 				$("#matchpassword").text("Passwords match");
@@ -91,6 +89,11 @@
 </head>
 <body>
 	<h2>Register Account</h2>
+	
+	<c:if test = "${param.error != null}">
+		<p class="error">[!] That username already exists. [!]</p>
+	</c:if>
+	
 	<sf:form id="form" method="post"
 		action="${pageContext.request.contextPath}/createaccount"
 		commandName="user">

@@ -1,17 +1,8 @@
 package com.unisyd_elec5619.springmvc.dashboard;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
-import com.unisyd_elec5619.springmvc.service.ProjectManager;
 
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 public class DashboardController {
 	

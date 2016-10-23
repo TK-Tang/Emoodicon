@@ -11,6 +11,7 @@
 				<i>$<c:out value="${prod.price}" /></i>
 			<a href="projects/edit/${prod.id }">edit</a>
 			<a href="projects/delete/${prod.id }">delete</a>
+			<a href="${pageContext.request.contextPath}/calendar"> calendar</a>
 			<br>
 			<br>
 		</c:forEach>

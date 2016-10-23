@@ -11,23 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component("userDaoJpaImpl")
 public class UserDaoJpaImpl implements UserDao {
-	
-	/*
-	ApplicationContext context =
-	new ClassPathXmlApplicationContext("src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
-	*/
 
-	
-    private SessionFactory sessionFactory ; //= (SessionFactory)context.getBean("sessionFactory");
-    
-	
-    @Autowired
+	/*
+	 * ApplicationContext context = new ClassPathXmlApplicationContext(
+	 * "src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
+	 */
+
+	private SessionFactory sessionFactory; // =
+											// (SessionFactory)context.getBean("sessionFactory");
+
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory =  sessionFactory;
+		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
-	@Transactional
 	public void insert(Users user) {
 		System.out.println("UserDaoJpaImpl.insert(User user) called: " + user.getUsername());
 		System.out.println("UserDaoJpaImpl.insert(User user) called: " + user.getPassword());
@@ -43,17 +41,17 @@ public class UserDaoJpaImpl implements UserDao {
 	@Override
 	@Transactional
 	public void update(List<Users> users) {
-		
-		for (Users u : users){
+
+		for (Users u : users) {
 			this.sessionFactory.getCurrentSession().merge(u);
 		}
-		
+
 	}
 
 	@Override
 	public void deleteUser(long userId) {
 		Session currentSession = this.sessionFactory.getCurrentSession();
-		
+
 		Users user = (Users) currentSession.get(Users.class, userId);
 		currentSession.delete(user);
 	}
@@ -61,7 +59,7 @@ public class UserDaoJpaImpl implements UserDao {
 	@Override
 	public Users find(long userId) {
 		Session currentSession = this.sessionFactory.getCurrentSession();
-		
+
 		return (Users) currentSession.get(Users.class, userId);
 	}
 
@@ -69,35 +67,40 @@ public class UserDaoJpaImpl implements UserDao {
 	public List<Users> find(List<Long> userIds) {
 		List<Users> userList = new ArrayList<Users>();
 		Session currentSession = this.sessionFactory.getCurrentSession();
-			
-		for (Long l : userIds){
+
+		for (Long l : userIds) {
 			userList.add((Users) currentSession.get(Users.class, l));
 		}
-		
+
 		return userList;
 	}
-	
+
 	@Override
-	public boolean exists(long userId){
+
+	public boolean exists(long userId) {
 		Session currentSession = this.sessionFactory.getCurrentSession();
-		
-		if (currentSession.get(Users.class, userId) != null){
+
+		if (currentSession.get(Users.class, userId) != null) {
 			return true;
-		} 
+		}
 		return false;
 	}
-	
+
 	@Override
-	@Transactional
-	public Users getUser(String username){
+	public Users getUser(String username) {
 		Session currentSession = this.sessionFactory.getCurrentSession();
-		
+		System.out.println(username);
 		List<Users> userList = currentSession.createQuery("FROM Users WHERE username = :username").setParameter("username", username).list();
-		
-		Users user = userList.get(0);
-		
+
+		Users user;
+
+		try {
+			user = userList.get(0);
+		} catch (IndexOutOfBoundsException i) {
+			return null;
+		}
+
 		return user;
 	}
-
 
 }

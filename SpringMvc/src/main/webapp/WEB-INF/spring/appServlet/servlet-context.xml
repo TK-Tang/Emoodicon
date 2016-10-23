@@ -77,6 +77,16 @@
 
 	<beans:bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+		
+	<beans:bean id="calendarService"
+		class="com.unisyd_elec5619.springmvc.service.CalendarServiceImpl">
+		<beans:property name="calendarDao" ref="calendarDao" />
+	</beans:bean>
+	
+	<beans:bean id="calendarDao"
+		class="com.unisyd_elec5619.springmvc.calendar.CalendarDaoJpaImpl">
+		<beans:property name="sessionFactory" ref="sessionFactory" />
+	</beans:bean>
 
 	<beans:bean id="userService"
 		class="com.unisyd_elec5619.springmvc.service.UserServiceImpl">

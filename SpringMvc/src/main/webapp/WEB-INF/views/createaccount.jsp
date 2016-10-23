@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="refresh"
-	content="0; url=${pageContext.request.contextPath}/dashboard.jsp" />
+	content="0; url=${pageContext.request.contextPath}/newaccount?error=true" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Creating account...</title>
 

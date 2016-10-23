@@ -19,6 +19,10 @@
 	<c:if test = "${param.error != null}">
 	<p class="error">[!] Login failed. Check your username and password. [!]</p>
 	</c:if>
+	
+	<c:if test = "${param.hasCreated != null}">
+	<p class="error"> USER CREATED</p>
+	</c:if>
 
 	<form name='login'
 		action="<c:url value='j_spring_security_check' />"

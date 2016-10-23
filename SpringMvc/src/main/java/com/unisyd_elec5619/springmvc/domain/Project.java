@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.unisyd_elec5619.springmvc.users.Users;
+
 @Entity
 @Table(name="Project")
 public class Project implements Serializable {
@@ -22,6 +24,9 @@ public class Project implements Serializable {
 	
 	@Column(name="Price")
     private Double price;
+	
+	@Column(name="Users")
+	private Users user;
     
     public long getId() {
 		return id;
