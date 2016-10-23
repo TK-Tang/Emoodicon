@@ -6,17 +6,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emoodicon - Create Project</title>
+<title>Emoodicon - Page Title</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
@@ -27,7 +22,7 @@
 
 </head>
 
-<body class="create-project">
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -81,7 +76,7 @@
 	                			<li>
 			                        <a href="#">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.name}" />
+			                            <c:out value="${proj.description}" />
 			                        </a>
 			                    </li>
 	                		<%-- </c:when>
@@ -140,14 +135,14 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                <li class="active">Create Project</li>
+                <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li class="active">Dashboard</li>
             </ol>
         </div><!--/.row-->
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header">Create Project</h1>
+                <h1 class="page-header">Create </h1>
                 <%-- <p>Project Manager: 
                     <span class="project-manager">Ken Nichols</span> 
                 </p>
@@ -162,25 +157,28 @@
         
         <div class="row">
         	<div class="col-xs-12">
-        		<form id="createProject" action="add" method="post">
-        			<div>
-						Name: <input type="text" name="name"/>
-					</div>
-					<div>
-						Description: <input type="text" name="description"/>
-					</div>
-					<div>
-						Price: <input type="number" name="price"/>
-					</div>
-					<div>
-						Project Start Date: <input type="date" name="projectStartDate"/>
-					</div>
-					<div>
-						Project Deadline: <input type="date" name="projectDeadline"/>
-					</div>
-					<input type="submit" value="Add"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</form>
+<!--------------------------- here ----------------------------->     		
+<div class="row">
+		<form action="add" method="post">
+			Name: <input type="text" name="name"/>
+			<br />
+			Description: <input type="text" name="description"/>
+			<br />
+			Price: <input type="number" name="price"/>
+			<br />
+			Project Start Date: <input type="date" name="projectStartDate"/>
+			<br />
+			Project Deadline: <input type="date" name="projectDeadline"/>
+			<br />
+			<input type="submit" value="Add"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>        		
+        		
+        		
+        		
+        		
+        		
+<!-- ------------------------- there ---------------------------->
         	</div>
             
         </div><!--/.row-->
