@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,15 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import static javax.persistence.GenerationType.IDENTITY;
 
 import com.unisyd_elec5619.springmvc.users.Users;
-
 
 @Entity
 @Table(name="Project")
@@ -38,6 +34,7 @@ public class Project implements Serializable {
 	@Column(name="Price")
     private Double price;
 	
+
 	@Column(name="Name")
 	private String name;
 	
@@ -63,6 +60,7 @@ public class Project implements Serializable {
     public void setUsers(Set<Users> users){
     	this.users = users;
     }
+
     
     public long getId() {
 		return id;

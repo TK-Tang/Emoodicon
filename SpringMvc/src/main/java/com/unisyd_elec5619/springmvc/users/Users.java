@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,11 @@ import com.unisyd_elec5619.springmvc.users.enums.Gender;
 @Entity
 @Table(name = "Users")
 public class Users implements Serializable{
+
+	public Users(){
+		
+	}
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

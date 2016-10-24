@@ -54,7 +54,7 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
             <!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
             <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
             <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
@@ -74,6 +74,7 @@
                                 <li>
                                     <a href="#">
                                         <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+
                                         <c:out value="${proj.name}" />
                                     </a>
                                 </li>
@@ -133,6 +134,7 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
         <div class="row">
             <ol class="breadcrumb">
+
                 <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
                 <li class="active">User Settings</li>
             </ol>

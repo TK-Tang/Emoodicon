@@ -1,5 +1,7 @@
 package com.unisyd_elec5619.springmvc.users;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Authority")
-public class Authority {
+public class Authority implements Serializable{
 	
 	public Authority (String username, String authority){
 		this.username = username;

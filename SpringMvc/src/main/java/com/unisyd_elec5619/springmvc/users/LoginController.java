@@ -4,14 +4,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.unisyd_elec5619.springmvc.service.AuthorityServiceImpl;
 import com.unisyd_elec5619.springmvc.service.UserServiceImpl;
@@ -53,6 +50,10 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "newaccount";
 		}
+
+		if (userServiceImpl.find(user.getUsername())  != null){
+			return "/createaccount";
+		}
 		
 		user.setAuthority("user");
 		user.setEnabled(1);
@@ -64,7 +65,7 @@ public class LoginController {
 			
 		} catch (DuplicateKeyException e) {
 			result.rejectValue("username", "DuplicateKey.user.username", "This username already exists.");
-			return "newaccount";
+			return "/createaccount";
 		}
 
 		return "login";

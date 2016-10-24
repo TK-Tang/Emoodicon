@@ -70,7 +70,7 @@ public class UserController {
 		String name = (currentUser.getUsername());
 		
 		Map<String, Users> user = new HashMap<String, Users>();
-	    user.put("users", this.userService.getUser(name));
+	    user.put("users", this.userService.find(name));
 		
 	    System.out.println(user.get("users").getUsername());
 		ModelAndView mv = new ModelAndView("userprofile", "model", user);

@@ -5,6 +5,24 @@
 
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+	<head>
+		<title><fmt:message key="title" /></title>
+	</head>
+	<body>
+		<h3>Products</h3>
+		<c:forEach items="${model.projects}" var="prod">
+				<c:out value="${prod.description}" />
+				<br />
+				<i>$<c:out value="${prod.price}" /></i>
+			<a href="projects/edit/${prod.id }">edit</a>
+			<a href="projects/delete/${prod.id }">delete</a>
+			<a href="${pageContext.request.contextPath}/calendar"> calendar</a>
+			<br>
+			<br>
+		</c:forEach>
+	</body>
+=======
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -193,4 +211,5 @@
     </script>   
 </body>
 
+>>>>>>> f4eca5de2625c10466ca2352927d8581ffc75f88
 </html>

@@ -5,6 +5,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
   <head>
     <title>Signup to Emoodicon</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -107,10 +108,15 @@
           			
           	</div>
             <div class="col-sm-4 login-box">
+                    <c:if test = "${param.error != null}">
+			            <div class="alert alert-danger" role="alert">
+			              <strong>Username already exists</strong>
+			            </div>
+				    </c:if>
 				      <div class="alert" id="matchpassword"></div>
 				    <sf:form id="form" method="post"
-            action="${pageContext.request.contextPath}/createaccount"
-            commandName="user">
+			            action="${pageContext.request.contextPath}/createaccount"
+			            commandName="user">
 				      		<div class="input-field col s12">
                     <sf:input id="username" class="control" path="username" name="username"
                     type="text" placeholder="Username" />
@@ -142,6 +148,10 @@
 		                <!-- <input type="hidden" name="${_csrf.parameterName}"
 		                    value="${_csrf.token}" /> -->
 				    </sf:form>
+				    <div class="col s12 signup-link">
+					    Already have an account?<a href= "<c:url value = "/login"/>"> Login here!</a>
+					    <!--  Some fancy way to add a new URL over pageContext.request.contextPath -->
+				    </div>
             </div>
           </div>
         </div>
