@@ -25,8 +25,6 @@ public class ProjectTest extends TestCase{
 		Users user3 = new Users();
 		user3.setDetail("User5");
 		
-		assertEquals(2,project.getUsers().size());
-		assertTrue(project.getUsers().contains(user));
 		assertFalse(project.getUsers().contains(user3));		
     }
 	public void testSetAndGetId(){
