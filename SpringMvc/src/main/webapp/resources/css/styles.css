@@ -1003,3 +1003,9 @@ body.create-project form#createProject div{
 body.edit-project form#editProject div{
 	margin-bottom: 10px;
 }
+
+/* Project List */
+
+body.project-list span.action-buttons a{
+	margin-bottom: 10px;
+}

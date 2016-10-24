@@ -3,16 +3,21 @@ package com.unisyd_elec5619.springmvc.web;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.unisyd_elec5619.springmvc.domain.Project;
 import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
@@ -26,6 +31,10 @@ public class ProjectController {
 
 	@RequestMapping(value="/add")
 	public String addProject(Model uiModel) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		
+		uiModel.addAttribute("username", name);
 		System.out.println("Returning add.jsp");
 		uiModel.addAttribute("projects", this.projectManager.getProjects());
 		return "add";
@@ -38,6 +47,8 @@ public class ProjectController {
 		Project project = new Project();
 		project.setName(httpServletRequest.getParameter("name"));
 		project.setDescription(httpServletRequest.getParameter("description"));
+		project.setProjectManager(httpServletRequest.getParameter("projectManager"));
+		
 		//handle number format exception
 		try{
 			project.setPrice(Double.valueOf(httpServletRequest.getParameter("price")));
@@ -91,6 +102,10 @@ public class ProjectController {
 		if(project.getProjectDeadline() == null){
 			project.setProjectDeadlineDefault();
 		}
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		
+		uiModel.addAttribute("username", name);
 		uiModel.addAttribute("project", project);
 		uiModel.addAttribute("projects", this.projectManager.getProjects());
 		
@@ -102,7 +117,7 @@ public class ProjectController {
 		System.out.println("redirecting to projectList(edit)");
 		this.projectManager.updateProject(project);
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/projects/view";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
@@ -112,5 +127,16 @@ public class ProjectController {
 		this.projectManager.deleteProject(id);
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/view")
+	public ModelAndView viewProjects(){
+		Map<String, Object> myModel = new HashMap<String, Object>();
+        myModel.put("projects", this.projectManager.getProjects());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		
+		myModel.put("username", name);
+        return new ModelAndView("projectList", "model", myModel);
 	}
 }

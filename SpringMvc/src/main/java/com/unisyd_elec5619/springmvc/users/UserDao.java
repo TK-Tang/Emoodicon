@@ -17,6 +17,7 @@ public interface UserDao {
 	public void deleteUser(long userId);
 
 	public Users find(long userId);
+	
 
 	public List<Users> find(List<Long> userIds);
 	

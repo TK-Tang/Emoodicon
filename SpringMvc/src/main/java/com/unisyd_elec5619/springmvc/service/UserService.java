@@ -12,4 +12,7 @@ public interface UserService {
 	 public void setUserDao(UserDaoJpaImpl userDao);
 	 
 	 public void update(Users user);
+	 
+	 public Users find(String username);
+	 
 }

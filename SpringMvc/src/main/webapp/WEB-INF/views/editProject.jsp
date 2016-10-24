@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
-<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+<link href='<c:url value="/resources/css/styles.css" />' rel="stylesheet">
 
 <!--Icons-->
 <script src="<c:url value="/resources/js/lumino.glyphs.js" />"></script>
@@ -37,6 +37,7 @@
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${username} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="${pageContext.request.contextPath}/calendar"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"/></svg> Calendar</a></li>
                             <li><a href="${pageContext.request.contextPath}/userprofile/"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
                             <li><a href="${pageContext.request.contextPath}/usersettings/"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
                             <li><a href="${pageContext.request.contextPath}/logout/"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
@@ -49,14 +50,15 @@
     </nav>
         
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    	
+        
         <form role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
             </div>
         </form>
         <ul class="nav menu">
-            <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+            <li class="active"><a href="/springmvc"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+
             <!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
             <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
             <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
@@ -65,33 +67,34 @@
             <li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
             -->
             <li><a href="${pageContext.request.contextPath}/projects/add"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Create Project</a></li>
+            <li><a href="${pageContext.request.contextPath}/projects/view"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Manage Projects</a></li>
             <li class="parent">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
-                	<c:forEach items="${projects}" var="proj" varStatus="projCounter">
-                		<%-- <c:choose>
-	                		<c:when test="${projCounter.count > 1}"> --%>
-	                			<li>
-			                        <a href="#">
-			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.name}" />
-			                        </a>
-			                    </li>
-	                		<%-- </c:when>
-	                		<c:otherwise>
-	                			<li class="active-project">
-			                        <a href="#">
-			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.description}" />
-			                        </a>
-			                    </li>
-	                		</c:otherwise>
-	                	</c:choose> --%>
-                		
-					</c:forEach>
-                	
+                    <c:forEach items="${projects}" var="proj" varStatus="projCounter">
+                        <c:choose>
+                            <c:when test="${projCounter.count > 1}">
+                                <li>
+                                    <a href="#">
+                                        <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+                                        <c:out value="${proj.name}" />
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="active-project">
+                                    <a href="#">
+                                        <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+                                        <c:out value="${proj.name}" />
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                        
+                    </c:forEach>
+                    
                     <!-- <li class="active-project">
                         <a class="" href="#">
                             <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
@@ -119,6 +122,8 @@
                     </li>
                 </ul>
             </li>
+            
+            
             <li role="presentation" class="divider"></li>
             <!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
             <li>
@@ -136,6 +141,7 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li><a href="/springmvc/projectList.htm">Project Management</a></li>
                 <li class="active">Edit Project</li>
             </ol>
         </div><!--/.row-->
@@ -159,34 +165,56 @@
         	<div class="col-xs-12">
 				<!-- <a href="/springmvc/projectList.htm">Project list view Page</a> -->
 			
-				<sf:form id="editProject" method="POST" modelAttribute="project">
+				<sf:form id="editProject" method="POST" modelAttribute="project" class="form-horizontal" role="form">
+				
+				
 					<fieldset>
-						<div>
-							Project Title:
-							<sf:input path="name"/>
-						</div>
-						<div>
-							Description:
-							<sf:input path="description"/>
-						</div>
-						<div>
-							Price
-							<sf:input type="number" path="price"/>
-						</div>
-						<div>
-							Project Start Date:
-							<sf:input type="date" placeholder="" path="projectStartDate"/>
-						</div>
-						<div>
-							Project Deadline:
-							<sf:input type="date" placeholder="" path="projectDeadline"/>
-						</div>
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Project Title:</label>
+						  <div class="col-lg-6">
+							<sf:input path="name" class="form-control"/>
+						  </div>
+					    </div>
+						
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Description:</label>
+						  <div class="col-lg-6">
+							<sf:input path="description" class="form-control"/>
+						  </div>
+					    </div>
+					    
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Price:</label>
+						  <div class="col-lg-6">
+							<sf:input type="number" path="price" class="form-control"/>
+						  </div>
+					    </div>
+		
+		                <div class="form-group">
+                          <label class="col-lg-2 control-label">Project Start Date:</label>
+						  <div class="col-lg-6">
+							<sf:input type="date" placeholder="" path="projectStartDate" class="form-control"/>
+						  </div>
+					    </div>
+						
+						<div class="form-group">
+                          <label class="col-lg-2 control-label">Project Start Date:</label>
+						  <div class="col-lg-6">
+							<sf:input type="date" placeholder="" path="projectDeadline" class="form-control"/>
+						  </div>
+					    </div>
+					  
 						
 						<!-- This hidden field is required for Hibernate to recognize this Product -->
-						<sf:hidden path="id"/>
-						<input type="submit" value="Submit"/>
-						<button type="reset">Cancel</button>
-										
+						<div class="form-group">
+						  <label class="col-md-2 control-label"></label>
+						  <div class="col-md-6">
+						    <sf:hidden path="id"/>
+						    <input type="submit" class="btn btn-primary" value="Submit">
+						    <a class="btn btn-primary" href="${pageContext.request.contextPath}/projects/view" >Cancel </a>
+				          </div>
+				         </div>									
+						
 					</fieldset>
 				</sf:form>
         	</div>
@@ -196,7 +224,8 @@
         
                                 
     </div>  <!--/.main-->
-
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>

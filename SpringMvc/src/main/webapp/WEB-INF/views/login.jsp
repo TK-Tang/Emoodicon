@@ -34,7 +34,9 @@
             <div class="col-sm-4 login-box">
             <!-- <h1>e<span>mood</span>icon</h1> -->
 				    <c:if test = "${param.error != null}">
-				    <p class="error">[!] Login failed. Check your username and password. [!]</p>
+			            <div class="alert alert-danger" role="alert">
+			              <strong>Login failed.</strong> Check your username and password.
+			            </div>
 				    </c:if>
 				
 				    <form name='login'
@@ -52,7 +54,6 @@
 			            		<input class="btn col s12" name="submit" type="submit"
 		                    value="Login" />
 			            	</div>
-		                
 
 		                <input type="hidden" name="${_csrf.parameterName}"
 		                    value="${_csrf.token}" />

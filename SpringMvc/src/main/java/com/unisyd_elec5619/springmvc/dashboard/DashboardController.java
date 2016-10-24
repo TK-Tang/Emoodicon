@@ -1,17 +1,8 @@
 package com.unisyd_elec5619.springmvc.dashboard;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
-import com.unisyd_elec5619.springmvc.service.ProjectManager;
 
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 public class DashboardController {
 	
@@ -36,7 +27,7 @@ public class DashboardController {
 	@Resource(name="projectManager")
 	private DatabaseProjectManager projectManager;
 
-	@RequestMapping(value = {"/","/dashboard"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/dashboard", "/index.html", "/index", "/**/index", "/**/index.html"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

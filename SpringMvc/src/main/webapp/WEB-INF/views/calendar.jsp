@@ -1,37 +1,43 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
+
 
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emoodicon - Page Title</title>
+<title>Emoodicon - Calendar</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
-<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='<c:url value="/resources/css/styles.css" />'
+	rel="stylesheet">
+<link href='<c:url value="/resources/css/calendarcss.css" />'
+	rel="stylesheet">
 
 <!--Icons-->
 <script src="<c:url value="/resources/js/lumino.glyphs.js" />"></script>
 
 </head>
 
-<body class="project-list">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/springmvc/">E<span>MOOD</span>ICON</a>
-                <ul class="user-menu">
+<body class="user-settings">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/springmvc/">E<span>MOOD</span>ICON
+				</a>
+				<ul class="user-menu">
                     <li class="dropdown pull-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${model.username} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${username} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                                                     <li><a href="${pageContext.request.contextPath}/calendar"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"/></svg> Calendar</a></li>
                             <li><a href="${pageContext.request.contextPath}/userprofile/"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
@@ -40,12 +46,13 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
-                            
-        </div><!-- /.container-fluid -->
-    </nav>
-        
-    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         
         <form role="search">
             <div class="form-group">
@@ -69,7 +76,7 @@
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
-                    <c:forEach items="${model.projects}" var="proj" varStatus="projCounter">
+                    <c:forEach items="${projects}" var="proj" varStatus="projCounter">
                         <c:choose>
                             <c:when test="${projCounter.count > 1}">
                                 <li>
@@ -132,20 +139,21 @@
         </ul>
 
     </div><!--/.sidebar-->
-        
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
-        <div class="row">
-            <ol class="breadcrumb">
-                <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                <li><a href="/springmvc">Dashboard</a></li>
-                <li class="active">Manage Projects</li>
-            </ol>
-        </div><!--/.row-->
-        
-        <div class="row">
-            <div class="col-sm-12">
-                <h1 class="page-header">Manage Projects</h1>
-                <%-- <p>Project Manager: 
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home">
+							<use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div>
+		<!--/.row-->
+
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="page-header"></h1>
+				<%-- <p>Project Manager: 
                     <span class="project-manager">Ken Nichols</span> 
                 </p>
                 <span class="project-settings">
@@ -153,101 +161,135 @@
                         <svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>
                     </a>
                 </span> --%>
-            </div>
-        </div><!--/.row-->
-        
-        
-        <div class="row">
-        	<div class="col-xs-12">
-<!--------------------- Product  -------------------->
- 				<div class="col-xs-12">
+			</div>
+		</div>
+		<!--/.row-->
 
-                    <div>                    
-                        <a class="btn btn-success" href="${pageContext.request.contextPath}/projects/add">Create New Project</a>
-                    </div>
-
-                    <hr>
-	                    <div class="row">
-	                        <div class="col-md-12">
-	                        	<table class="table">
-								    <thead>
-								      <tr>
-								        <th>Project Title </th>
-								        <th>Project Starting Date</th>
-								        <th>Project Deadline</th>
-								        <th>Project Budget: </th>
-								        <th>Project Description</th>
-								        <th>Project Manager</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-								    
-								    <c:forEach items="${model.projects}" var="prod">
-								    
-								      <tr>
-								        <td><c:out value="${prod.name}" /></td>
-								        <td><c:out value="${prod.projectStartDate}" /></td>
-								        <td><c:out value="${prod.projectDeadline}" /></td>
-								        <td>$<c:out value="${prod.price}" /></td>
-								        <td><c:out value="${prod.description}" /></td>
-								        <td><c:out value="${prod.projectManager}" /></td>
-								        
-								        <td>
-											<span class="pull-right action-buttons">
-				                        		<a class="btn btn-success" href="${pageContext.request.contextPath}/projects/edit/${prod.id }">
-				                        			Edit
-				                        		</a>
-				                        		<a class="btn btn-danger" href="${pageContext.request.contextPath}/projects/delete/${prod.id }">
-				                        			Delete
-				                        		</a>
-				                        	</span>
-								        </td>
-								      </tr>							      
-								      </c:forEach>
-								      
-								    </tbody>
-								  </table>
-	                            
-	                        </div>
-	                    </div>
-	
-	                    <hr>
-                    
-                </div>
+		<!-- body -->
 		
-<!-- ----------------------------         end of product      ---------------------------- -->		
-        	</div>
-            
-        </div><!--/.row-->
+		<c:forEach items="${dateMonths}" var="month">
+			<div class="month">
+				<ul>
+					<li class="prev">&#10094;</li>
+					<li class="next">&#10095;</li>
+					<li style = "text-align:center;">
+						<span style="font-size: 18px;">${month.month}</span>
+						<br>
 
-        
-                                
-    </div>  <!--/.main-->
+						<span style="font-size: 18px;">${maxYear}</span>
+					</li>
+				</ul>
+			</div>
+	
+			<ul class="weekdays">
+				<li>Mo</li>
+				<li>Tu</li>
+				<li>We</li>
+				<li>Th</li>
+				<li>Fr</li>
+				<li>Sa</li>
+				<li>Su</li>
+			</ul>
+			
+			<c:set var="dayCount" scope="page" value="0"/>
+			<c:set var="set" scope="page" value="0"/>
+			<ul class="days">
+				<c:forEach begin="0" end="${month.days - 1}">
+					<c:set var="dayCount" value="${dayCount + 1}"/>
+						<c:forEach items="${dateLog}" var="currentDate">
+						
+						<!--  
+							${currentDate.year} ${maxYear} <br/>
+							${currentDate.month} ${month.monthNumber} <br/>
+							${currentDate.day} ${dayCount} <br/>
+							-->
+							<c:choose>
+								<c:when test="${currentDate.year == maxYear && currentDate.month == month.monthNumber && currentDate.day == dayCount}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
-    <script src="<c:url value="/resources/js/chart-data.js"/>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/easypiechart.min.js"></script>
-    <script src="<c:url value="/resources/js/easypiechart-data.js" />"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-    <script>
-        $('#calendar').datepicker({
-        });
+													<c:choose>
+														<c:when test="${currentDate.mood == 0}">
+															<li><span class="negative"><c:out value="${dayCount}"/></span></li>
+														</c:when>
+														<c:when test="${currentDate.mood == 1}">
+															<li><span class="neutral"><c:out value="${dayCount}"/></span></li>
+														</c:when>
+														<c:when test="${currentDate.mood == 2}">
+															<li><span class="positive"><c:out value="${dayCount}"/></span></li>
+														</c:when>
+													</c:choose>
+													<c:set var="set" scope="page" value="1"/>
+								</c:when>
+							</c:choose>
+							
+						</c:forEach>
+					<c:choose>
+						<c:when test="${set == 0}">
+							<li><c:out value="${dayCount}"/>
+							</li>
+						</c:when>
+					</c:choose>
+					<c:set var="set" value="0"/>
+				</c:forEach>
+			</ul>
+		</c:forEach>
 
-        !function ($) {
-            $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-                $(this).find('em:first').toggleClass("glyphicon-minus");      
-            }); 
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
+		<div class="emote">
 
-        $(window).on('resize', function () {
-          if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function () {
-          if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
-    </script>   
+			<p class="white">How was your current day?</p>
+
+			<div class="emotecontent">
+
+				<sf:form method="post"
+					action="${pageContext.request.contextPath}/setemote"
+					commandName="calendarobject">
+					<table >
+						<tr>
+							<td>
+								<sf:input path="currentDate" type="date" />
+
+								<sf:select  path="mood"  type="text" >
+									<sf:option value="0">Negative</sf:option>
+									<sf:option value="1">Neutral</sf:option>
+									<sf:option value="2">Positive</sf:option>
+								</sf:select>
+								<br/>
+							</td>
+						<tr>
+							<td> 
+								<br/>
+								<div>
+
+									<input value="Submit" type="submit"  />
+									<input class = "hitit" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+								</div>
+							</td>
+						</tr>
+					</table>
+
+				</sf:form>
+					<br/>
+					<c:if test = "${error != null}">
+						<p class="white">[!] Your date cannot be null [!]</p>
+					</c:if>
+			</div>
+
+
+		</div>
+
+	</div>
+	<!--/.main-->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+	<script src="<c:url value="/resources/js/chart-data.js"/>"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/easypiechart.min.js"></script>
+	<script src="<c:url value="/resources/js/easypiechart-data.js" />"></script>
+
 </body>
+
 </html>
