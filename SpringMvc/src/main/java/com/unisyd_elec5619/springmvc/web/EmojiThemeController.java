@@ -1,6 +1,5 @@
 package com.unisyd_elec5619.springmvc.web;
 
-
 import org.hibernate.classic.Session;
 
 import java.util.ArrayList;
@@ -39,33 +38,39 @@ public class EmojiThemeController {
 
 	@Autowired
 	private EmojiConsumerService emojiService;
-	
+
 	@Autowired
 	private EmojiCRUDService emojiCRUDService;
-	
 
-	//@RequestMapping(value = "/", method = RequestMethod.GET)
+	// @RequestMapping(value = "/", method = RequestMethod.GET)
 	@RequestMapping(value = "/emojiTheme", method = RequestMethod.GET)
-    public ModelAndView emojiUserTheme() {
-    	EmojiFamilyImpl ef = new EmojiFamilyImpl();
-        ModelAndView mv = new ModelAndView("emojiTheme2", "emojiFamilyImpl", ef); // constructor takes model name, view name, model object
-        
-        ArrayList<EmojiFamily> listThemes = new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies());
-        
-        Collections.sort(listThemes, new Comparator<EmojiFamily>(){
+	public ModelAndView emojiUserTheme() {
+		EmojiFamilyImpl ef = new EmojiFamilyImpl();
+		ModelAndView mv = new ModelAndView("emojiTheme2", "emojiFamilyImpl", ef); // constructor
+																					// takes
+																					// model
+																					// name,
+																					// view
+																					// name,
+																					// model
+																					// object
+
+		ArrayList<EmojiFamily> listThemes = new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies());
+
+		Collections.sort(listThemes, new Comparator<EmojiFamily>() {
 			@Override
 			public int compare(EmojiFamily o1, EmojiFamily o2) {
 				return o1.getId() - o2.getId();
 			}
-        	});
-        
-        mv.addObject("listThemes", listThemes);
-        mv.addObject("ef", ef);
-        return mv;
-    }
+		});
+
+		mv.addObject("listThemes", listThemes);
+		mv.addObject("ef", ef);
+		return mv;
+	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public ModelAndView upload(@ModelAttribute("emojiFamilyImpl") EmojiFamilyImpl ef){
+	public ModelAndView upload(@ModelAttribute("emojiFamilyImpl") EmojiFamilyImpl ef) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("emojiTheme2");
 		modelAndView.addObject("emojiFamilyImpl", ef);
@@ -73,45 +78,44 @@ public class EmojiThemeController {
 		emojiCRUDService.addOrUpdateEmojiFamily(ef);
 		return new ModelAndView("redirect:/emojiTheme");
 	}
-	
+
 	@RequestMapping(value = "/emojiThemeDelete/{id}")
-    public ModelAndView deleteTheme(@PathVariable("id") long id) {
+	public ModelAndView deleteTheme(@PathVariable("id") long id) {
 		emojiCRUDService.delete(id);
 		System.out.println("emojiCRUDService.delete(" + id + ")");
 		return new ModelAndView("redirect:/emojiTheme");
 	}
-	
+
 	@RequestMapping(value = "/emojiThemeUpdate/{id}")
 	public ModelAndView updateTheme(@PathVariable("id") long id) {
 		System.out.println("/emojiThemeUpdate/{id} called id: " + id);
 		EmojiFamilyImpl ef = (EmojiFamilyImpl) emojiService.getEmojiFamilyById(id);
-		
+
 		System.out.println(emojiService.getEmojiFamilyById(id).getName());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("emojiTheme2");
 		mv.addObject("emojiFamilyImpl", ef);
-		
-		  ArrayList<EmojiFamily> listThemes = new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies());
-	        
-	        Collections.sort(listThemes, new Comparator<EmojiFamily>(){
-				@Override
-				public int compare(EmojiFamily o1, EmojiFamily o2) {
-					return o1.getId() - o2.getId();
-				}
-	        	});
-	        
-	        mv.addObject("listThemes", listThemes);
-		return mv;
-		
-	}
-	
-    @RequestMapping(value = "/emojiThemeSave", method = RequestMethod.POST)
-    public ModelAndView addEmojiFamily(@ModelAttribute("emojiFamilyImpl") EmojiFamilyImpl ef, BindingResult result) {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("emojiTheme2");
-        emojiCRUDService.addOrUpdateEmojiFamily(ef);
-        return new ModelAndView("redirect:/emojiTheme");
-    }
 
-	
+		ArrayList<EmojiFamily> listThemes = new ArrayList<EmojiFamily>(emojiService.getEmojiFamilies());
+
+		Collections.sort(listThemes, new Comparator<EmojiFamily>() {
+			@Override
+			public int compare(EmojiFamily o1, EmojiFamily o2) {
+				return o1.getId() - o2.getId();
+			}
+		});
+
+		mv.addObject("listThemes", listThemes);
+		return mv;
+
+	}
+
+	@RequestMapping(value = "/emojiThemeSave", method = RequestMethod.POST)
+	public ModelAndView addEmojiFamily(@ModelAttribute("emojiFamilyImpl") EmojiFamilyImpl ef, BindingResult result) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("emojiTheme2");
+		emojiCRUDService.addOrUpdateEmojiFamily(ef);
+		return new ModelAndView("redirect:/emojiTheme");
+	}
+
 }
