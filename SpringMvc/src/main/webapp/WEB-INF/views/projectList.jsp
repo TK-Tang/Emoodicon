@@ -175,7 +175,7 @@
 								        <th>Project Title </th>
 								        <th>Project Starting Date</th>
 								        <th>Project Deadline</th>
-								        <th>Project Budget: </th>
+								        <th>Project Budget </th>
 								        <th>Project Description</th>
 								        <th>Project Manager</th>
 								      </tr>

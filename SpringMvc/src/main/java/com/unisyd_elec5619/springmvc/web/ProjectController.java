@@ -126,7 +126,7 @@ public class ProjectController {
 
 		this.projectManager.deleteProject(id);
 		
-		return "redirect:/";
+		return "redirect:/projects/view";
 	}
 	
 	@RequestMapping(value="/view")

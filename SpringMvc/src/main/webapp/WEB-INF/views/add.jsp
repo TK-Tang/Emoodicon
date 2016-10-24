@@ -185,7 +185,7 @@
 		       </div>
 	        </div>	        
             <div class="form-group">
-               <label class="col-lg-2 control-label">Price:</label>
+               <label class="col-lg-2 control-label">Project Budget:</label>
 			   <div class="col-lg-6">
 				  <input type="number" name="price" class="form-control"/>
 		       </div>
@@ -200,6 +200,13 @@
                <label class="col-lg-2 control-label">Project Deadline:</label>
 			   <div class="col-lg-6">
 				  <input type="date" name="projectDeadline" class="form-control"/>
+			   </div>
+		    </div>
+		    <!-- ${username} -->
+		    <div class="form-group" style="display: none;">
+               <label class="col-lg-2 control-label">Project Manager:</label>
+			   <div class="col-lg-6">
+				  <input type="text" name="projectManager" value= ${username} class="form-control"/>
 			   </div>
 		    </div>
 		

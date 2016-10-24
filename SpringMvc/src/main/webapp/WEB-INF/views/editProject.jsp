@@ -184,7 +184,7 @@
 					    </div>
 					    
 					    <div class="form-group">
-                          <label class="col-lg-2 control-label">Price:</label>
+                          <label class="col-lg-2 control-label">Project Budget:</label>
 						  <div class="col-lg-6">
 							<sf:input type="number" path="price" class="form-control"/>
 						  </div>
@@ -204,6 +204,12 @@
 						  </div>
 					    </div>
 					  
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Project Manager:</label>
+						  <div class="col-lg-6">
+							<sf:input type="text" placeholder="" path="projectManager" class="form-control"/>
+						  </div>
+					    </div>
 						
 						<!-- This hidden field is required for Hibernate to recognize this Product -->
 						<div class="form-group">
