@@ -53,6 +53,7 @@ public class DashboardController {
 		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		model.addAttribute("totalIndex", calendarService.getTotalIndex(53));
+		model.addAttribute("overallMood", calendarService.getAvgMood(53));
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		

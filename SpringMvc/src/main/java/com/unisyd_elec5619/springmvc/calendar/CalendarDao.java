@@ -24,5 +24,7 @@ public interface CalendarDao {
 	public List<Calendar> retrieveUserProjectCalendar(Users user, long projectId);
 	
 	public int totalIndex(long projectId);
+	
+	public int avgMood(long projectId);
 
 }

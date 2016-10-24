@@ -22,5 +22,5 @@ public interface CalendarService {
 	
 	public int getTotalIndex(long projectId);
 	
-	
+	public int getAvgMood(long projectId);
 }

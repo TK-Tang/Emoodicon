@@ -164,7 +164,23 @@
                             <svg class="glyph stroked heart"><use xlink:href="#stroked-heart"/></svg>
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">Happy</div>
+                            <div class="large">
+                            
+                            	<c:choose>
+                            		<c:when test="${overallMood == 0}">
+                            			Negative
+                            		</c:when>
+                            		<c:when test="${overallMood == 1}">
+                            			Neutral
+                            		</c:when>
+                            		<c:when test="${overallMood == 2}">
+                            			Positive
+                            		</c:when>
+                            		
+                            	</c:choose>
+                            
+                            
+                            </div>
                             <div class="text-muted">Overall Mood</div>
                         </div>
                     </div>

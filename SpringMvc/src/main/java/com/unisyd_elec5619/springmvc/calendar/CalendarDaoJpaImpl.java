@@ -89,5 +89,39 @@ public class CalendarDaoJpaImpl implements CalendarDao {
 		
 		return calendarList.size();
 	}
+	
+	@Override
+	public int avgMood(long projectId){
+		Session currentSession = this.sessionFactory.getCurrentSession();
+		List<Calendar> calendarList = currentSession.createQuery("FROM Calendar WHERE projectId = :projectId").setParameter("projectId", projectId).list();
+		
+		int mood = 3;
+		int negativeCount = 0;
+		int positiveCount = 0;
+		int neutralCount = 0;
+		
+		for(Calendar c : calendarList){
+			if (c.getMood() == 0){
+				negativeCount = negativeCount + 1;
+			} else if (c.getMood() == 1){
+				neutralCount = neutralCount  + 1;
+			} else {
+				positiveCount = positiveCount + 1;
+			}
+		}
+		
+		if (positiveCount > neutralCount){
+			mood = 2;
+		} else {
+			mood = 1;
+		}
+		
+		if (negativeCount > positiveCount && negativeCount > neutralCount ){
+			mood = 0;
+		}
+		
+		
+		return mood;
+	}
 
 }

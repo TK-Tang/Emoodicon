@@ -64,5 +64,11 @@ public class CalendarServiceImpl implements CalendarService {
 	public int getTotalIndex(long projectId){
 		return calendarDao.totalIndex(projectId);
 	}
+	
+	@Transactional
+	@Override
+	public int getAvgMood(long projectId){
+		return calendarDao.avgMood(projectId);
+	}
 
 }

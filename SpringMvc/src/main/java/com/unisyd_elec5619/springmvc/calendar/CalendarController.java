@@ -151,7 +151,7 @@ public class CalendarController {
 			
 			calendarService.save(calendarobject);
 			
-			return "calendarredirect";
+			return showCalendar(model);
 		} else {
 
 			model.addAttribute("error", true);
