@@ -58,5 +58,11 @@ public class CalendarServiceImpl implements CalendarService {
 	public List<Calendar> retrieveUserProjectCalendar(Users user, long projectId){
 		return calendarDao.retrieveUserProjectCalendar(user, projectId);
 	}
+	
+	@Transactional
+	@Override
+	public int getTotalIndex(long projectId){
+		return calendarDao.totalIndex(projectId);
+	}
 
 }

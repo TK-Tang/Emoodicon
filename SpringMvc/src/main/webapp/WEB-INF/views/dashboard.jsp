@@ -176,8 +176,8 @@
                             <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">120</div>
-                            <div class="text-muted">Total Commits</div>
+                            <div class="large">${totalIndex}</div>
+                            <div class="text-muted">Index Count</div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
                             <div class="large">10</div>
-                            <div class="text-muted">Team Members</div>
+                            <div class="text-muted">Members</div>
                         </div>
                     </div>
                 </div>

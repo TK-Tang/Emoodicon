@@ -20,5 +20,7 @@ public interface CalendarService {
 	
 	public List<Calendar> retrieveUserProjectCalendar(Users user, long projectId);
 	
+	public int getTotalIndex(long projectId);
+	
 	
 }

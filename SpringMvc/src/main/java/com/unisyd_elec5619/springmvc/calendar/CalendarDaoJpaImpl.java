@@ -81,5 +81,13 @@ public class CalendarDaoJpaImpl implements CalendarDao {
 		
 		return calendarList;
 	}
+	
+	@Override
+	public int totalIndex(long projectId){
+		Session currentSession = this.sessionFactory.getCurrentSession();
+		List<Calendar> calendarList = currentSession.createQuery("FROM Calendar WHERE projectId = :projectId").setParameter("projectId", projectId).list();
+		
+		return calendarList.size();
+	}
 
 }

@@ -22,5 +22,7 @@ public interface CalendarDao {
 	public List<Calendar> retrieveProjectCalendarSet(long projectID);
 	
 	public List<Calendar> retrieveUserProjectCalendar(Users user, long projectId);
+	
+	public int totalIndex(long projectId);
 
 }
