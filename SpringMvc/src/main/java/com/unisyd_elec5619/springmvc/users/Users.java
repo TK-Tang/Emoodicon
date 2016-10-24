@@ -22,6 +22,10 @@ import com.unisyd_elec5619.springmvc.users.enums.Gender;
 @Table(name = "Users")
 public class Users implements Serializable{
 	
+	public Users(){
+		
+	}
+	
 	private Project project;
 
 	@Id

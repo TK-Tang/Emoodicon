@@ -50,15 +50,10 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "newaccount";
 		}
-		System.out.println("SMACK");
+
 		if (userServiceImpl.find(user.getUsername())  != null){
-			System.out.println("GACK" + user.getUsername());
 			return "/createaccount";
-		
 		}
-		
-		System.out.println("ACK");
-		
 		
 		user.setAuthority("user");
 		user.setEnabled(1);

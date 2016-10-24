@@ -42,7 +42,7 @@
 	<context:component-scan base-package="com.unisyd_elec5619.springmvc" />
 
 	<!-- persistence code - stores MySQL details -->
-	<context:property-placeholder location="WEB-INF/persistence-mysql.properties" />
+	<context:property-placeholder location="/WEB-INF/persistence-mysql.properties" />
 
 	<!-- Used for connecting to the database -->
 	<beans:bean id="dataSource" name="dataSource"
