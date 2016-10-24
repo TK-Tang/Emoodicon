@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -105,6 +106,20 @@ public class EmojiFamilyDaoJpaImpl implements EmojiFamilyDao {
 		query = "SELECT name FROM EmojiFamilyImpl";
 		Query queryResult = this.sessionFactory.getCurrentSession().createQuery(query);
 		 return new ArrayList<String>(queryResult.list());
+	}
+	
+	@Override
+	public long rowCount(){
+		// code adapted from http://stackoverflow.com/questions/1372317/how-do-we-count-rows-using-hibernate
+		return ((Long)this.sessionFactory.getCurrentSession().createQuery("select count(*) from EmojiFamilyImpl").uniqueResult()).intValue();
+	}
+	
+	@Override
+	public void clearDefaultEmojiAllRows(){
+		String query;
+		query = "UPDATE EmojiFamilyImpl set defaultEmoji = false";
+		Query queryResult = this.sessionFactory.getCurrentSession().createQuery(query);
+		queryResult.executeUpdate();
 	}
 
 }

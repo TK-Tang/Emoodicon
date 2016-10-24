@@ -18,12 +18,17 @@ public class EmojiCRUDServiceImpl implements EmojiCRUDService {
 	
 	@Override
 	public void addOrUpdateEmojiFamily(EmojiFamily emojiFamily){
+		if(emojiFamily.isDefaultEmoji()){emojiDao.clearDefaultEmojiAllRows();};
 		emojiDao.saveOrUpdate(emojiFamily);
 	}
 
 	@Override
 	public void delete(long id) {
-		emojiDao.delete(id);
+		// prevent deletion of default emoji or last record (first condition also prevents last being deleted)
+		if(emojiDao.rowCount() > 1 && !emojiDao.getEmojiFamilyById(id).isDefaultEmoji()){
+			emojiDao.delete(id);
+		}
+
 	}
 
 }
