@@ -38,6 +38,8 @@ public class ProjectController {
 		Project project = new Project();
 		project.setName(httpServletRequest.getParameter("name"));
 		project.setDescription(httpServletRequest.getParameter("description"));
+		project.setProjectManager(httpServletRequest.getParameter("projectManager"));
+		
 		//handle number format exception
 		try{
 			project.setPrice(Double.valueOf(httpServletRequest.getParameter("price")));

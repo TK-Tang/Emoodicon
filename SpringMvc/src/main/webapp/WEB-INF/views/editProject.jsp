@@ -181,7 +181,10 @@
 							Project Deadline:
 							<sf:input type="date" placeholder="" path="projectDeadline"/>
 						</div>
-						
+						<div>
+							Project Manager:
+							<sf:input type="text" placeholder="" path="projectManager"/>
+						</div>
 						<!-- This hidden field is required for Hibernate to recognize this Product -->
 						<sf:hidden path="id"/>
 						<input type="submit" value="Submit"/>

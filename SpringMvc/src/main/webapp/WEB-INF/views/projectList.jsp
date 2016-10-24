@@ -119,6 +119,7 @@
 								        <th>Project Deadline</th>
 								        <th>Project Budget: </th>
 								        <th>Project Description</th>
+								        <th>Project Manager</th>
 								      </tr>
 								    </thead>
 								    <tbody>
@@ -131,6 +132,8 @@
 								        <td><c:out value="${prod.projectDeadline}" /></td>
 								        <td>$<c:out value="${prod.price}" /></td>
 								        <td><c:out value="${prod.description}" /></td>
+								        <td><c:out value="${prod.projectManager}" /></td>
+								        
 								        <td>
 											<span class="pull-right">
 				                        		<a class="btn btn-success" href="projects/edit/${prod.id }">

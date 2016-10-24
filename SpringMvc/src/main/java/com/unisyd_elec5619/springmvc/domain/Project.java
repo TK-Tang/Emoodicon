@@ -46,6 +46,9 @@ public class Project implements Serializable {
 	
 	@Column(name="ProjectDeadline")
 	private Date projectDeadline;
+	
+	@Column(name="ProjectManager")
+	private String projectManager;
 		
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinTable(name = "Project_user", joinColumns = {
@@ -93,6 +96,13 @@ public class Project implements Serializable {
     
     public void setName(String name){
     	this.name = name;
+    }
+    
+    public void setProjectManager(String manager){
+    	this.projectManager = manager;
+    }
+    public String getProjectManager(){
+    	return this.projectManager;
     }
     
     public Date getProjectStartDate(){

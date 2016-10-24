@@ -178,6 +178,9 @@
 					<div>
 						Project Deadline: <input type="date" name="projectDeadline"/>
 					</div>
+					<div>
+						Project Manager: <input type="text" name="projectManager"/>
+					</div>
 					<input type="submit" value="Add"/>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form>
