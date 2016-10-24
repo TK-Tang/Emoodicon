@@ -1,4 +1,4 @@
-package com.unisyd_elec5619.springmvc.unittests;
+package com.unisyd_elec5619.springmvc.usertests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -56,6 +56,9 @@ public class UsersRegistrationTest {
 		Users foundUser = usersService.find(user1.getUsername());
 		
 		assertEquals(foundUser.getUsername(), user1.getUsername());
+		assertEquals(foundUser.getNameFirst(), user1.getNameFirst());
+		assertEquals(foundUser.getNameLast(), user1.getNameLast());
+		assertEquals(foundUser.getDetail(), user1.getDetail());
 		
 		((ConfigurableApplicationContext) context).close();
 
