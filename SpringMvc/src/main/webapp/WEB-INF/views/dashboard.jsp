@@ -34,7 +34,7 @@
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${username} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="${pageContext.request.contextPath}/calendar"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Calendar</a></li>
+                                                    <li><a href="${pageContext.request.contextPath}/calendar"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"/></svg> Calendar</a></li>
                             <li><a href="${pageContext.request.contextPath}/userprofile/"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
                             <li><a href="${pageContext.request.contextPath}/usersettings/"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
                             <li><a href="${pageContext.request.contextPath}/logout/"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
@@ -64,6 +64,7 @@
             <li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
             -->
             <li><a href="${pageContext.request.contextPath}/projects/add"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Create Project</a></li>
+            <li><a href="${pageContext.request.contextPath}/projects/view"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Manage Projects</a></li>
             <li class="parent">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
@@ -118,7 +119,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="${pageContext.request.contextPath}/projectList.htm"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Project management</a></li>
+            
             
             <li role="presentation" class="divider"></li>
             <!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
@@ -136,7 +137,7 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
                 <li class="active">Dashboard</li>
             </ol>
         </div><!--/.row-->

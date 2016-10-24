@@ -133,7 +133,10 @@ public class ProjectController {
 	public ModelAndView viewProjects(){
 		Map<String, Object> myModel = new HashMap<String, Object>();
         myModel.put("projects", this.projectManager.getProjects());
-
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		
+		myModel.put("username", name);
         return new ModelAndView("projectList", "model", myModel);
 	}
 }
