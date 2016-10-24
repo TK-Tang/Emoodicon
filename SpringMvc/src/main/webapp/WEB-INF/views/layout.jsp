@@ -2,14 +2,13 @@
 <%@ page session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="mvc"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emoodicon - User Settings</title>
+<title>Emoodicon - Page Title</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
@@ -20,7 +19,7 @@
 
 </head>
 
-<body class="user-settings">
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -47,14 +46,14 @@
     </nav>
         
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-        
+    	
         <form role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
             </div>
         </form>
         <ul class="nav menu">
-            <li class="active"><a href="${pageContext.request.contextPath}/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+            <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
             <!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
             <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
             <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
@@ -68,29 +67,28 @@
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
-                    <c:forEach items="${projects}" var="proj" varStatus="projCounter">
-                        <%-- <c:choose>
-                            <c:when test="${projCounter.count > 1}"> --%>
-                                <li>
-                                    <a href="#">
-                                        <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-
-                                        <c:out value="${proj.name}" />
-                                    </a>
-                                </li>
-                            <%-- </c:when>
-                            <c:otherwise>
-                                <li class="active-project">
-                                    <a href="#">
-                                        <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-                                        <c:out value="${proj.description}" />
-                                    </a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose> --%>
-                        
-                    </c:forEach>
-                    
+                	<c:forEach items="${projects}" var="proj" varStatus="projCounter">
+                		<%-- <c:choose>
+	                		<c:when test="${projCounter.count > 1}"> --%>
+	                			<li>
+			                        <a href="#">
+			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+			                            <c:out value="${proj.name}" />
+			                        </a>
+			                    </li>
+	                		<%-- </c:when>
+	                		<c:otherwise>
+	                			<li class="active-project">
+			                        <a href="#">
+			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+			                            <c:out value="${proj.description}" />
+			                        </a>
+			                    </li>
+	                		</c:otherwise>
+	                	</c:choose> --%>
+                		
+					</c:forEach>
+                	
                     <!-- <li class="active-project">
                         <a class="" href="#">
                             <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
@@ -134,15 +132,14 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
         <div class="row">
             <ol class="breadcrumb">
-
                 <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                <li class="active">User Settings</li>
+                <li class="active">Page Title</li>
             </ol>
         </div><!--/.row-->
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header">User Settings</h1>
+                <h1 class="page-header">Insert Page Title</h1>
                 <%-- <p>Project Manager: 
                     <span class="project-manager">Ken Nichols</span> 
                 </p>
@@ -156,53 +153,10 @@
         
         
         <div class="row">
-            <div class="col-xs-12">
-                <mvc:form modelAttribute="Users"  method = "post" action="${pageContext.request.contextPath}/usereditprofile" commandName = "user">
-                    <table>
-                        <tr>
-                            <td><mvc:label path="nameFirst">Name</mvc:label></td>
-                            <td><mvc:input path="nameFirst" cssErrorClass="formFieldError" /></td>
-                            <td><mvc:errors path="nameFirst" /></td>
-                        </tr>
-                        <tr>
-                            <td><mvc:label path="nameLast">Last Name</mvc:label></td>
-                            <td><mvc:input path="nameLast" cssErrorClass="formFieldError" /></td>
-                            <td><mvc:errors path="nameLast" /></td>
-                        </tr>
-                        <tr>
-                            <td><mvc:label path="password">Password</mvc:label></td>
-                            <td><mvc:password path="password" /></td>
-                        </tr>
-                        <tr>
-                            <td><mvc:label path="detail">Detail</mvc:label></td>
-                            <td><mvc:textarea path="detail" /></td>
-                        </tr>
-                        <tr>
-                            <td><mvc:label path="gender">Gender</mvc:label></td>
-                            <td><mvc:radiobuttons path="gender" items="${genders}" /></td>
-                        </tr>
-                        <tr>
-                            <td><mvc:label path="country">Country</mvc:label></td>
-                            <td><mvc:select path="country" items="${countries}" /></td>
-                        </tr>
-                        <tr>
-
-                            <td><mvc:label path="nonSmoking">Non Smoking</mvc:label></td>
-                            <td><mvc:checkbox path="nonSmoking" /></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="btn btn-default" type="submit" value="Save" />
-                                <a class="btn btn-default" href="${pageContext.request.contextPath}">Cancel</a>
-                            </td>
-                            <td>
-                                <!-- This hidden field is required for Hibernate to recognize this User -->
-                                <mvc:hidden path="username" />
-                            </td>
-                        </tr>
-                    </table>
-                </mvc:form>
-            </div>
+        	<div class="col-xs-12">
+        		<!--  Insert content here -->
+            	Content
+        	</div>
             
         </div><!--/.row-->
 

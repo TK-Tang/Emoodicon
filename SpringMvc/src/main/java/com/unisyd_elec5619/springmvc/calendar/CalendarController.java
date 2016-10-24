@@ -59,6 +59,8 @@ public class CalendarController {
 		Users currentUser = userService.find(loggedUser.getUsername());
 		
 		
+		model.addAttribute("username", loggedUser.getUsername());
+		
 		// THIS HERE NEEDS TO CHANGE
 		/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		 * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 

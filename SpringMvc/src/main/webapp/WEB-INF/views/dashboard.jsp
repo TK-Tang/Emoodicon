@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">E<span>MOOD</span>ICON</a>
+                <a class="navbar-brand" href="/springmvc/">E<span>MOOD</span>ICON</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> ${username} <span class="caret"></span></a>
@@ -54,7 +54,7 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
             <!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
             <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
             <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
@@ -74,7 +74,7 @@
 	                			<li>
 			                        <a href="#">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.description}" />
+			                            <c:out value="${proj.name}" />
 			                        </a>
 			                    </li>
 	                		</c:when>
@@ -82,7 +82,7 @@
 	                			<li class="active-project">
 			                        <a href="#">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			                            <c:out value="${proj.description}" />
+			                            <c:out value="${proj.name}" />
 			                        </a>
 			                    </li>
 	                		</c:otherwise>
@@ -140,12 +140,12 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header">Project Manhattan</h1>
+                <h1 class="page-header">${projects[0].name}</h1>
                 <p>Project Manager: 
-                    <span class="project-manager">Ken Nichols</span> 
+                    <span class="project-manager">${projects[0].projectManager}</span> 
                 </p>
                 <span class="project-settings">
-                    <a href="#">
+                    <a href="projects/edit/${projects[0].id }">
                         <svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>
                     </a>
                 </span>

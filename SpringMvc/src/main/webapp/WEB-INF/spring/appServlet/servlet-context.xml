@@ -88,6 +88,10 @@
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 
+	<beans:bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+
 	<beans:bean id="userService"
 		class="com.unisyd_elec5619.springmvc.service.UserServiceImpl">
 		<beans:property name="userDao" ref="userDao" />
@@ -109,8 +113,10 @@
 		<beans:property name="authorityDao" ref="authorityDao" />
 	</beans:bean>
 
-	<beans:bean name="/projects/"
+	<beans:bean name="/projectList.htm"
 		class="com.unisyd_elec5619.springmvc.web.ProjectViewController">
 		<beans:property name="projectManager" ref="projectManager" />
 	</beans:bean>
+	
+	
 </beans:beans>

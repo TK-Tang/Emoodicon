@@ -69,7 +69,7 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="index.html"><svg
+			<li class="active"><a href="${pageContext.request.contextPath}/dashboard"><svg
 						class="glyph stroked dashboard-dial">
 						<use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
 			<!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>

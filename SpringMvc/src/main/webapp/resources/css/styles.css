@@ -975,3 +975,31 @@ h1.page-header + p{
 	background-color: initial;
 	text-decoration: none;
 }
+
+
+/* User Settings */
+body.user-settings form#user tbody td input, 
+body.user-settings form#user tbody td label,
+body.user-settings form#user tbody td a,
+body.user-settings form#user tbody td select{
+	margin-bottom: 20px;
+}
+
+body.user-settings form#user tbody td label{
+	margin-right: 20px;
+	font-weight: 400;
+}
+
+body.user-settings form#user tbody td span label{
+	margin-left: 10px;
+}
+
+/* Create Project */
+body.create-project form#createProject div{
+	margin-bottom: 10px;
+}
+
+/* Edit Project */
+body.edit-project form#editProject div{
+	margin-bottom: 10px;
+}

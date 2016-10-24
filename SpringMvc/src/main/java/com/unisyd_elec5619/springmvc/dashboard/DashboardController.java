@@ -27,7 +27,7 @@ public class DashboardController {
 	@Resource(name="projectManager")
 	private DatabaseProjectManager projectManager;
 
-	@RequestMapping(value = {"/","/dashboard"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/dashboard", "/index.html", "/index", "/**/index", "/**/index.html"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

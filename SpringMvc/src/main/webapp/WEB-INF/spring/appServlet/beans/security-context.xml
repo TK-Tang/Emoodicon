@@ -67,6 +67,9 @@
 		<security:intercept-url pattern="/*"
 			access="isAuthenticated()" />
 
+		<!-- Disabled by Brenton - getting 403 error on multi part forms -->
+		<security:csrf disabled="true"/>
+
 
 		<security:form-login login-page="/login"
 			default-target-url="/" login-processing-url="/j_spring_security_check"
