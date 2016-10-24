@@ -141,7 +141,7 @@
             <div class="col-sm-12">
                 <h1 class="page-header">${projects[0].name}</h1>
                 <p>Project Manager: 
-                    <span class="project-manager">Ken Nichols</span> 
+                    <span class="project-manager">${projects[0].projectManager}</span> 
                 </p>
                 <span class="project-settings">
                     <a href="projects/edit/${projects[0].id }">

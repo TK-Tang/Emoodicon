@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,10 @@ public class ProjectController {
 
 	@RequestMapping(value="/add")
 	public String addProject(Model uiModel) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		
+		uiModel.addAttribute("username", name);
 		System.out.println("Returning add.jsp");
 		uiModel.addAttribute("projects", this.projectManager.getProjects());
 		return "add";
@@ -93,6 +99,10 @@ public class ProjectController {
 		if(project.getProjectDeadline() == null){
 			project.setProjectDeadlineDefault();
 		}
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		
+		uiModel.addAttribute("username", name);
 		uiModel.addAttribute("project", project);
 		uiModel.addAttribute("projects", this.projectManager.getProjects());
 		

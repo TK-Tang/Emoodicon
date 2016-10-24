@@ -75,6 +75,7 @@ public class UserController {
 	    System.out.println(user.get("users").getUsername());
 		ModelAndView mv = new ModelAndView("userprofile", "model", user);
 
+		mv.addObject("username", name);
 		mv.addObject("genders", Gender.values());
 		mv.addObject("countries", Country.values());
 		mv.addObject("projects", this.projectManager.getProjects());
