@@ -3,6 +3,8 @@ package com.unisyd_elec5619.springmvc.web;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.unisyd_elec5619.springmvc.domain.Project;
 import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
@@ -114,7 +117,7 @@ public class ProjectController {
 		System.out.println("redirecting to projectList(edit)");
 		this.projectManager.updateProject(project);
 		
-		return "redirect:/projectList.htm";
+		return "redirect:/projects/view";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
@@ -124,5 +127,13 @@ public class ProjectController {
 		this.projectManager.deleteProject(id);
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/view")
+	public ModelAndView viewProjects(){
+		Map<String, Object> myModel = new HashMap<String, Object>();
+        myModel.put("projects", this.projectManager.getProjects());
+
+        return new ModelAndView("projectList", "model", myModel);
 	}
 }

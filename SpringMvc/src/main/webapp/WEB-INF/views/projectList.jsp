@@ -136,10 +136,10 @@
 								        
 								        <td>
 											<span class="pull-right">
-				                        		<a class="btn btn-success" href="projects/edit/${prod.id }">
+				                        		<a class="btn btn-success" href="${pageContext.request.contextPath}/projects/edit/${prod.id }">
 				                        			edit
 				                        		</a>
-				                        		<a class="btn btn-success" href="projects/delete/${prod.id }">
+				                        		<a class="btn btn-success" href="${pageContext.request.contextPath}/projects/delete/${prod.id }">
 				                        			delete
 				                        		</a>
 				                        	</span>
