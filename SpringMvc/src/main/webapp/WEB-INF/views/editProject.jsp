@@ -119,6 +119,10 @@
                     </li>
                 </ul>
             </li>
+            
+            
+            <li><a href="${pageContext.request.contextPath}/projectList.htm"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Project management</a></li>
+            
             <li role="presentation" class="divider"></li>
             <!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
             <li>
@@ -136,6 +140,7 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li><a href="/springmvc/projectList.htm">Project Management</a></li>
                 <li class="active">Edit Project</li>
             </ol>
         </div><!--/.row-->
@@ -159,37 +164,56 @@
         	<div class="col-xs-12">
 				<!-- <a href="/springmvc/projectList.htm">Project list view Page</a> -->
 			
-				<sf:form id="editProject" method="POST" modelAttribute="project">
+				<sf:form id="editProject" method="POST" modelAttribute="project" class="form-horizontal" role="form">
+				
+				
 					<fieldset>
-						<div>
-							Project Title:
-							<sf:input path="name"/>
-						</div>
-						<div>
-							Description:
-							<sf:input path="description"/>
-						</div>
-						<div>
-							Price
-							<sf:input type="number" path="price"/>
-						</div>
-						<div>
-							Project Start Date:
-							<sf:input type="date" placeholder="" path="projectStartDate"/>
-						</div>
-						<div>
-							Project Deadline:
-							<sf:input type="date" placeholder="" path="projectDeadline"/>
-						</div>
-						<div>
-							Project Manager:
-							<sf:input type="text" placeholder="" path="projectManager"/>
-						</div>
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Project Title:</label>
+						  <div class="col-lg-6">
+							<sf:input path="name" class="form-control"/>
+						  </div>
+					    </div>
+						
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Description:</label>
+						  <div class="col-lg-6">
+							<sf:input path="description" class="form-control"/>
+						  </div>
+					    </div>
+					    
+					    <div class="form-group">
+                          <label class="col-lg-2 control-label">Price:</label>
+						  <div class="col-lg-6">
+							<sf:input type="number" path="price" class="form-control"/>
+						  </div>
+					    </div>
+		
+		                <div class="form-group">
+                          <label class="col-lg-2 control-label">Project Start Date:</label>
+						  <div class="col-lg-6">
+							<sf:input type="date" placeholder="" path="projectStartDate" class="form-control"/>
+						  </div>
+					    </div>
+						
+						<div class="form-group">
+                          <label class="col-lg-2 control-label">Project Start Date:</label>
+						  <div class="col-lg-6">
+							<sf:input type="date" placeholder="" path="projectDeadline" class="form-control"/>
+						  </div>
+					    </div>
+					  
+						
 						<!-- This hidden field is required for Hibernate to recognize this Product -->
-						<sf:hidden path="id"/>
-						<input type="submit" value="Submit"/>
-						<button type="reset">Cancel</button>
-										
+						<div class="form-group">
+						  <label class="col-md-2 control-label"></label>
+						  <div class="col-md-6">
+						    <sf:hidden path="id"/>
+						    <input type="submit" class="btn btn-primary" value="Submit">
+						    <input type="reset" class="btn btn-primary" value="Reset">
+				          </div>
+				         </div>									
+						
 					</fieldset>
 				</sf:form>
         	</div>
@@ -199,7 +223,8 @@
         
                                 
     </div>  <!--/.main-->
-
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>

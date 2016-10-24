@@ -61,7 +61,7 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+            <li class="active"><a href="/springmvc"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
             <!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
             <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
             <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
@@ -124,6 +124,9 @@
                     </li>
                 </ul>
             </li>
+            
+            <li><a href="${pageContext.request.contextPath}/projectList.htm"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Project management</a></li>
+            
             <li role="presentation" class="divider"></li>
             <!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
             <li>
@@ -140,7 +143,8 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">           
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="/springmvc/"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li><a href="/springmvc">Dashboard</a></li>
                 <li class="active">Create Project</li>
             </ol>
         </div><!--/.row-->
@@ -159,38 +163,63 @@
             </div>
         </div><!--/.row-->
         
+        <hr>
         
         <div class="row">
-        	<div class="col-xs-12">
-        		<form id="createProject" action="add" method="post">
-        			<div>
-						Name: <input type="text" name="name"/>
-					</div>
-					<div>
-						Description: <input type="text" name="description"/>
-					</div>
-					<div>
-						Price: <input type="number" name="price"/>
-					</div>
-					<div>
-						Project Start Date: <input type="date" name="projectStartDate"/>
-					</div>
-					<div>
-						Project Deadline: <input type="date" name="projectDeadline"/>
-					</div>
-					<div>
-						Project Manager: <input type="text" name="projectManager"/>
-					</div>
-					<input type="submit" value="Add"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</form>
+        	<div class="col-xs-12">  		
+       <div class="row">
+		<form action="add" method="post" class="form-horizontal" role="form">
+		    
+		    <div class="form-group">
+               <label class="col-lg-2 control-label">Name:</label>
+			   <div class="col-lg-6">
+				  <input type="text" name="name" class="form-control"/>
+		       </div>
+	        </div>
+		    <div class="form-group">
+               <label class="col-lg-2 control-label">Description:</label>
+			   <div class="col-lg-6">
+				  <input type="text" name="description" class="form-control"/>
+		       </div>
+	        </div>	        
+            <div class="form-group">
+               <label class="col-lg-2 control-label">Price:</label>
+			   <div class="col-lg-6">
+				  <input type="number" name="price" class="form-control"/>
+		       </div>
+		    </div>
+	        <div class="form-group">
+               <label class="col-lg-2 control-label">Project Start Date:</label>
+			   <div class="col-lg-6">
+				  <input type="date" name="projectStartDate" class="form-control"/>
+			   </div>
+		    </div>
+		    <div class="form-group">
+               <label class="col-lg-2 control-label">Project Deadline:</label>
+			   <div class="col-lg-6">
+				  <input type="date" name="projectDeadline" class="form-control"/>
+			   </div>
+		    </div>
+		
+		    <div class="form-group">
+				<label class="col-md-2 control-label"></label>
+				<div class="col-md-6">
+			        <input type="submit" class="btn btn-primary" value="Add"/>
+			        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			    </div>
+			 </div>
+		</form>        		
+        									
+						
+				
         	</div>
             
-        </div><!--/.row-->
-
-        
-                                
-    </div>  <!--/.main-->
+        </div><!--/.row-->       		
+        		
+        	
+        	</div>
+        	</div>
+            
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
