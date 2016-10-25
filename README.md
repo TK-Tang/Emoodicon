@@ -17,9 +17,9 @@
   - We set up an AWS MySQL database to hold the data. Following up with the information for programmers to set up our database. Mysql workbench can be used to check all the data in the database.
 
 # Amazon settings: #
-Type: MySQL
-Host name: brdbs-cluster-1.cluster-ci7jxexv2ij7.ap-southeast-2.rds.amazonaws.com
-Port: 3306
-Username: brea8524
-Password: jbh5N552mMzmR7Ge
-Schema: elec5619
+  - Type: MySQL
+  - Host name: brdbs-cluster-1.cluster-ci7jxexv2ij7.ap-southeast-2.rds.amazonaws.com
+  - Port: 3306
+  - Username: brea8524
+  - Password: jbh5N552mMzmR7Ge
+  - Schema: elec5619
