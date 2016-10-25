@@ -74,6 +74,23 @@
 	</beans:bean>
 
 	<tx:annotation-driven proxy-target-class="true" />
+	
+		<beans:bean id="projectUserService"
+		class="com.unisyd_elec5619.springmvc.UserProject.ProjectUserServiceImpl">
+		<beans:property name="projectUserDaoImpl" ref="projectUserDaoImpl" />
+	</beans:bean>
+
+
+	<beans:bean id="projectUserDaoImpl"
+		class="com.unisyd_elec5619.springmvc.UserProject.ProjectUserDaoImpl">
+		<beans:property name="sessionFactory" ref="sessionFactory" />
+	</beans:bean>
+	
+	
+	
+	
+	
+	
 
 	<beans:bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />

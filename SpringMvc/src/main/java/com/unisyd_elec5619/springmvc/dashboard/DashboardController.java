@@ -1,5 +1,6 @@
 package com.unisyd_elec5619.springmvc.dashboard;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
@@ -11,9 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.unisyd_elec5619.springmvc.domain.Project;
 import com.unisyd_elec5619.springmvc.service.CalendarServiceImpl;
 import com.unisyd_elec5619.springmvc.service.DatabaseProjectManager;
 
@@ -35,9 +38,10 @@ public class DashboardController {
 	public void setCalendarServiceImpl(CalendarServiceImpl calendarServiceImpl){
 		this.calendarService = calendarServiceImpl; 
 	}
-
-	@RequestMapping(value = {"/","/dashboard", "/index.html", "/index", "/**/index", "/**/index.html"}, method = RequestMethod.GET)
+	
+	@RequestMapping(value = {"/","/dashboard", "/index.html", "/index", "/**/index", "/**/index.html", "/{id}"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String name = user.getUsername();
@@ -47,17 +51,78 @@ public class DashboardController {
 		model.addAttribute("enabled", enabled);
 		model.addAttribute("projects", this.projectManager.getProjects());
 		
+		Project currentProject = null;
+		
+		for(Project p: this.projectManager.getProjects()){
+			currentProject = p;
+			break;
+		}
+
+		
+		model.addAttribute("currentProject", currentProject);
+		
+		long pid = currentProject.getId();
+		
+		
 		//FEED A PROPER PROJECT ID
 		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-		model.addAttribute("totalIndex", calendarService.getTotalIndex(53));
-		model.addAttribute("overallMood", calendarService.getAvgMood(53));
+		model.addAttribute("totalIndex", calendarService.getTotalIndex(pid));
+		model.addAttribute("overallMood", calendarService.getAvgMood(pid));
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		return "dashboard";
 	}
 	
+
+
+	@RequestMapping(value = {"project/{id}"}, method = RequestMethod.GET)
+	public String dynamicHome(Locale locale, Model model, @PathVariable("id") String id) {
+		
+		
+		System.out.println("Path Var: " + id);
+		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		boolean enabled = user.isEnabled();
+		
+		model.addAttribute("username", name);
+		model.addAttribute("enabled", enabled);
+		model.addAttribute("projects", this.projectManager.getProjects());
+		
+		Project currentProject = null;
+		
+		for(Project p: this.projectManager.getProjects()){
+			currentProject = p;
+			break;
+		}
+		
+		for (Project p : this.projectManager.getProjects()){
+			if (p.getName().equals(id)){
+				currentProject = p;
+			}
+		}
+		
+		
+		model.addAttribute("currentProject", currentProject);
+		
+		long pid = currentProject.getId();
+		
+		
+		//FEED A PROPER PROJECT ID
+		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+		//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+		model.addAttribute("totalIndex", calendarService.getTotalIndex(pid));
+		model.addAttribute("overallMood", calendarService.getAvgMood(pid));
+		
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "dashboard";
+	}
+
 }

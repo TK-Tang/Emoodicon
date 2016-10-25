@@ -74,7 +74,7 @@
                 		<c:choose>
 	                		<c:when test="${projCounter.count > 1}">
 	                			<li>
-			                        <a href="#">
+			                        <a href="${pageContext.request.contextPath}/project/${proj.name}">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
 			                            <c:out value="${proj.name}" />
 			                        </a>
@@ -82,7 +82,7 @@
 	                		</c:when>
 	                		<c:otherwise>
 	                			<li class="active-project">
-			                        <a href="#">
+			                        <a href="${pageContext.request.contextPath}/project/${proj.name}">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
 			                            <c:out value="${proj.name}" />
 			                        </a>
@@ -144,12 +144,12 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header">${projects[0].name}</h1>
+                <h1 class="page-header">${currentProject.name}</h1>
                 <p>Project Manager: 
-                    <span class="project-manager">${projects[0].projectManager}</span> 
+                    <span class="project-manager">${currentProject.projectManager}</span> 
                 </p>
                 <span class="project-settings">
-                    <a href="projects/edit/${projects[0].id }">
+                    <a href="projects/edit/${currentProject.id }">
                         <svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>
                     </a>
                 </span>
