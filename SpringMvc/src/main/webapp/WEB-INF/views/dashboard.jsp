@@ -149,7 +149,7 @@
                     <span class="project-manager">${currentProject.projectManager}</span> 
                 </p>
                 <span class="project-settings">
-                    <a href="projects/edit/${currentProject.id }">
+                    <a href="${pageContext.request.contextPath}/projects/edit/${currentProject.id }">
                         <svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>
                     </a>
                 </span>
