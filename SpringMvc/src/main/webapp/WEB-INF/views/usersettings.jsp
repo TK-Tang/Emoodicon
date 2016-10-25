@@ -291,8 +291,8 @@
                             <td><mvc:textarea path="detail" /></td>
                         </tr>
                         <tr>
-                            <td><mvc:label path="gender" required>Gender</mvc:label></td>
-                            <td><mvc:radiobuttons path="gender" items="${genders}" /></td>
+                            <td><mvc:label path="gender" >Gender</mvc:label></td>
+                            <td><mvc:radiobuttons path="gender" items="${genders}" required="true" /></td>
                         </tr>
                         <tr>
                             <td><mvc:label path="country">Country</mvc:label></td>
@@ -300,8 +300,8 @@
                         </tr>
                         <tr>
 
-                            <td><mvc:label path="nonSmoking" required>Non Smoking</mvc:label></td>
-                            <td><mvc:checkbox path="nonSmoking" /></td>
+                            <td><mvc:label path="nonSmoking" >Non Smoking</mvc:label></td>
+                            <td><mvc:checkbox path="nonSmoking" required="true" /></td>
                         </tr>
                         <tr>
                             <td>
