@@ -142,7 +142,7 @@
             </ol>
         </div><!--/.row-->
         
-        <div class="row">
+        <div class="row project-information">
             <div class="col-sm-12">
                 <h1 class="page-header">${currentProject.name}</h1>
                 <p>Project Manager: 
@@ -154,6 +154,8 @@
                     </a>
                 </span>
             </div>
+            <div class="col-sm-6">
+            Description: ${currentProject.description }</div>
         </div><!--/.row-->
         
         <div class="row">
