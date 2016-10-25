@@ -1009,3 +1009,14 @@ body.edit-project form#editProject div{
 body.project-list span.action-buttons a{
 	margin-bottom: 10px;
 }
+
+/* Dashboard */
+.project-information .col-sm-12 h1,
+.project-information .col-sm-12 p, 
+.project-information .col-sm-12 .project-settings{
+	margin-bottom: 0;
+}
+
+.project-information .col-sm-6{
+	margin-bottom: 20px;
+}
