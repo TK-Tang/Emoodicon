@@ -4,7 +4,7 @@
   - To allow development teams to record their daily emotions, and using this data, attempt to correlate the emotional well being of individuals with the success of a project.
 
 # Project Functional Contributions #
-1.   User login&Registration, Calendar  - Tk  - TK
+1.   User login&Registration, Calendar  - TK
 2.   User database and User settings  - Brenton
 3.   Project edit, create, delete  - Kaibin yu
 4.   Dashboard, Frontend Integration  - Sidney
