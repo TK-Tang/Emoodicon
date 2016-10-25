@@ -164,31 +164,38 @@
                 <!--  Insert content here -->
                 <table>
                     <tr>
-                        <td>Username</td>
+                        <td><label>Username</label></td>
+                        <td> :&nbsp;</td>
                         <td><c:out value="${model.users.username}" /></td>
                     </tr>
                     <tr>
-                        <td>First Name</td>
+                        <td><label>First Name</label></td>
+                        <td> :&nbsp;</td>
                         <td>${model.users.nameFirst}</td>
                     </tr>
                     <tr>
-                        <td>Last name</td>
+                        <td><label>Last name</label></td>
+                        <td> :&nbsp;</td>
                         <td>${model.users.nameLast}</td>
                     </tr>
                     <tr>
-                        <td>Detail</td>
+                        <td><label>Detail</label></td>
+                        <td> :&nbsp;</td>
                         <td>${model.users.detail}</td>
                     </tr>
                     <tr>
-                        <td>Gender</td>
+                        <td><label>Gender</label></td>
+                        <td> :&nbsp;</td>
                         <td>${model.users.gender}</td>
                     </tr>
                     <tr>
-                        <td>Country</td>
+                        <td><label>Country</label></td>
+                        <td> :&nbsp;</td>
                         <td>${model.users.country}</td>
                     </tr>
                     <tr>
-                        <td>Non-Smoking</td>
+                        <td><label>Non-Smoking</label></td>
+                        <td> :&nbsp;</td>
                         <td>${model.users.nonSmoking}</td>
                     </tr>
                 </table>

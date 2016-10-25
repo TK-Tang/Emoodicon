@@ -5,5 +5,9 @@ public enum Country {
     United_States,
     Germany,
     Lithuania,
-    Australia;
+    Australia,
+    China,
+    Thailand,
+	Land_Of_Danke_Memes,
+	Giant_Dorito_Island;
 }

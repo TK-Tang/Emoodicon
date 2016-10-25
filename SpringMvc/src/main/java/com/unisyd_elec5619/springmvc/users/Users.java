@@ -47,6 +47,8 @@ public class Users implements Serializable{
 	@Column(name = "password")
     private String password;
 	
+	private String newPassword;
+	
 	@Column(name = "enabled")
 	private int enabled;
 	
@@ -178,6 +180,14 @@ public class Users implements Serializable{
     public void setAuthority(String authority){
     	this.authority = authority;
     }
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
     
     /*
     @ManyToMany(fetch = FetchType.LAZY, mappedBy= "Users")

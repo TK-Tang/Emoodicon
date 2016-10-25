@@ -18,6 +18,107 @@
 <!--Icons-->
 <script src="<c:url value="/resources/js/lumino.glyphs.js" />"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+    <script src="<c:url value="/resources/js/chart-data.js"/>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/easypiechart.min.js"></script>
+    <script src="<c:url value="/resources/js/easypiechart-data.js" />"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $('#calendar').datepicker({
+        });
+
+        !function ($) {
+            $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
+                $(this).find('em:first').toggleClass("glyphicon-minus");      
+            }); 
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function () {
+          if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+          if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+    
+    <script type="text/javascript">
+    // $() is a function.
+    // document refers to Jquery's main document
+    // .keyup() is when user releases any key on the keyboard
+
+    // .addClass and .removeClass adds and remove a css class to a tag
+
+    function onLoad() {
+        $("#password").keyup(checkPasswordsMatch);
+        $("#confirmpassword").keyup(checkPasswordsMatch);
+
+
+        $(".check").submit(canSubmit);
+        $(".check").submit(checkIfUsernameLongerThanFiveChars);
+        $(".check").submit(checkIfPasswordLongerThanSevenChars);
+    }
+
+    function canSubmit() {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmpassword").val();
+
+        if (password == confirmPassword) {
+            return true;
+        }
+
+        alert("Passwords do not match.");
+        return false;
+    }
+
+    function checkPasswordsMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmpassword").val();
+
+        if (password.length > 7 && confirmPassword.length > 7) {
+
+            if (password == confirmPassword) {
+                $("#matchpassword").text("Passwords match");
+                $("#matchpassword").removeClass("alert-danger");
+                $("#matchpassword").addClass("alert-success");
+            } else {
+                $("#matchpassword").text("Passwords do not match");
+                $("#matchpassword").removeClass("alert-success");
+                $("#matchpassword").addClass("alert-danger");
+            }
+
+        }
+
+    }
+    
+    function checkIfPasswordLongerThanSevenChars(){
+        var password = $("#password").val();
+        
+        if (password.length < 7){
+            alert("Password must be longer than seven chars");
+            return false;
+        }
+        
+        return true;
+    }
+
+    function checkIfUsernameLongerThanFiveChars(){
+        var username = $("#username").val();
+        
+        if (username.length < 5){
+            alert("Username must be longer than five chars");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    $(document).ready(onLoad);
+    
+</script>
+
 </head>
 
 <body class="user-settings">
@@ -56,14 +157,6 @@
         </form>
         <ul class="nav menu">
             <li class="active"><a href="/springmvc"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-
-            <!-- <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
-            <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
-            <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
-            <li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Forms</a></li>
-            <li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
-            <li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
-            -->
             <li><a href="${pageContext.request.contextPath}/projects/add"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Create Project</a></li>
             <li><a href="${pageContext.request.contextPath}/projects/view"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Manage Projects</a></li>
             <li class="parent">
@@ -147,24 +240,44 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="page-header">User Settings</h1>
-                <%-- <p>Project Manager: 
-                    <span class="project-manager">Ken Nichols</span> 
-                </p>
-                <span class="project-settings">
-                    <a href="projects/edit/${projects[0].id }">
-                        <svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>
-                    </a>
-                </span> --%>
             </div>
         </div><!--/.row-->
+       
         
         
         <div class="row">
+        
+                <c:if test = "${error != null}">
+					<div class="alert alert-danger" role="alert">
+			    		<strong>Incorrect password </strong>.
+			    	</div>
+				</c:if>
+				 <c:if test = "${passworderror != null}">
+					<div class="alert alert-danger" role="alert">
+			    		<strong>New password must be longer than seven characters </strong>.
+			    	</div>
+				</c:if>
+		
+		<div class="alert" id="matchpassword"></div>
             <div class="col-xs-12">
-                <mvc:form modelAttribute="Users"  method = "post" action="${pageContext.request.contextPath}/usereditprofile" commandName = "user">
+                <mvc:form modelAttribute="Users"  class="check" method="post" action="${pageContext.request.contextPath}/usereditprofile" commandName = "user">
                     <table>
+                    
+                     	<tr>
+                            <td><label>Password</label></td>
+                            <td><mvc:input path="password" type="password" placeholder="current password" cssErrorClass="formFieldError" /></td>
+                            <td><mvc:errors path="password" /></td>
+                        </tr>
                         <tr>
-                            <td><mvc:label path="nameFirst">Name</mvc:label></td>
+                            <td><label for="password">New Password</label></td>
+                            <td><mvc:input path="newPassword" type = "password" name="password" id="password" placeholder="new password" /></td>
+                        </tr>
+                        <tr>
+                            <td for="confirmpassword">Confirm Password</td>
+                            <td><input name="confirmpassword" id="confirmpassword" placeholder="confirm password" type="password"/>
+                        </tr>
+                        <tr>
+                            <td><mvc:label path="nameFirst">First Name</mvc:label></td>
                             <td><mvc:input path="nameFirst" cssErrorClass="formFieldError" /></td>
                             <td><mvc:errors path="nameFirst" /></td>
                         </tr>
@@ -172,10 +285,6 @@
                             <td><mvc:label path="nameLast">Last Name</mvc:label></td>
                             <td><mvc:input path="nameLast" cssErrorClass="formFieldError" /></td>
                             <td><mvc:errors path="nameLast" /></td>
-                        </tr>
-                        <tr>
-                            <td><mvc:label path="password">Password</mvc:label></td>
-                            <td><mvc:password path="password" /></td>
                         </tr>
                         <tr>
                             <td><mvc:label path="detail">Detail</mvc:label></td>
@@ -196,49 +305,26 @@
                         </tr>
                         <tr>
                             <td>
+                            	<!-- This hidden field is required for Hibernate to recognize this User -->
+                                <mvc:hidden path="username" value="${username}"/>
+                                <mvc:hidden path="password" value="${password}"/>
+                                
                                 <input class="btn btn-default" type="submit" value="Save" />
                                 <a class="btn btn-default" href="${pageContext.request.contextPath}">Cancel</a>
                             </td>
                             <td>
-                                <!-- This hidden field is required for Hibernate to recognize this User -->
-                                <mvc:hidden path="username" />
+                          
                             </td>
                         </tr>
                     </table>
                 </mvc:form>
             </div>
             
+            <hr>
+            
         </div><!--/.row-->
-
-        
                                 
     </div>  <!--/.main-->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
-    <script src="<c:url value="/resources/js/chart-data.js"/>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/easypiechart.min.js"></script>
-    <script src="<c:url value="/resources/js/easypiechart-data.js" />"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-    <script>
-        $('#calendar').datepicker({
-        });
-
-        !function ($) {
-            $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-                $(this).find('em:first').toggleClass("glyphicon-minus");      
-            }); 
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
-
-        $(window).on('resize', function () {
-          if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function () {
-          if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
-    </script>   
 </body>
 
 </html>

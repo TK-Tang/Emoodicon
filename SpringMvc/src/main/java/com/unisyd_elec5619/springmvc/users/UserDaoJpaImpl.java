@@ -89,15 +89,11 @@ public class UserDaoJpaImpl implements UserDao {
 	@Override
 	public Users getUser(String username) {
 		Session currentSession = this.sessionFactory.getCurrentSession();
-		System.out.println(username);
 		List<Users> userList = currentSession.createQuery("FROM Users WHERE username = :username").setParameter("username", username).list();
-
-		Users user;
-
-		try {
-			user = userList.get(0);
-		} catch (IndexOutOfBoundsException i) {
-			return null;
+		
+		Users user = null;
+		for(Users u: userList){
+			user = u;
 		}
 
 		return user;
