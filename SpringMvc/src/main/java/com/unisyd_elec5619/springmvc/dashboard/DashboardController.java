@@ -39,7 +39,7 @@ public class DashboardController {
 		this.calendarService = calendarServiceImpl; 
 	}
 	
-	@RequestMapping(value = {"/","/dashboard", "/index.html", "/index", "/**/index", "/**/index.html", "/{id}"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/dashboard", "/index.html", "/index", "/**/index", "/**/index.html"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
 		
@@ -62,6 +62,7 @@ public class DashboardController {
 		model.addAttribute("currentProject", currentProject);
 		
 		long pid = currentProject.getId();
+		System.out.println("pid: " + pid);
 		
 		
 		//FEED A PROPER PROJECT ID
@@ -110,6 +111,7 @@ public class DashboardController {
 		model.addAttribute("currentProject", currentProject);
 		
 		long pid = currentProject.getId();
+		System.out.println("pid: " + pid);
 		
 		
 		//FEED A PROPER PROJECT ID

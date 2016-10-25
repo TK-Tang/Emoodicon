@@ -164,6 +164,10 @@
 			</div>
 		</div>
 		<!--/.row-->
+		
+		<div><p align = center><strong> ${currentproject.name} </strong></p></div>
+		<br/>
+		<div><p align = center>${username}'s calendar </p></div>
 
 		<!-- body -->
 		
@@ -240,11 +244,12 @@
 			<div class="emotecontent">
 
 				<sf:form method="post"
-					action="${pageContext.request.contextPath}/setemote"
+					action="${pageContext.request.contextPath}/setemote/"
 					commandName="calendarobject">
 					<table >
 						<tr>
 							<td>
+								<sf:input path="projectID" value="${currentProject.id}" type="hidden" />
 								<sf:input path="currentDate" type="date" />
 
 								<sf:select  path="mood"  type="text" >

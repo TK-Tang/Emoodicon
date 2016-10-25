@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,14 +47,24 @@ public class CalendarController {
 	
 	
 	//	public String showCalendar(@Valid Users user, BindingResult result) {
-	@RequestMapping("/calendar")
-	public String showCalendar(Model model) {
+	@RequestMapping("/calendar/{id}")
+	public String showCalendar(Model model, @PathVariable("id") long id) {
 		
 		int maxYear = 2000;
 		
+		
+		System.out.println("/calendar/" + id);
+		
+		Project currentProject = projectManager.getProjectById(id);
+		
+		System.out.println(currentProject.getName());
+		
+		Calendar cal = new Calendar();
+		cal.setProjectID(id);
+		
 		model.addAttribute("projects", this.projectManager.getProjects());
-		model.addAttribute("calendarobject", new Calendar());
-		model.addAttribute("currentproject", new Project());
+		model.addAttribute("calendarobject", cal);
+		model.addAttribute("currentproject", currentProject);
 		
 		User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Users currentUser = userService.find(loggedUser.getUsername());
@@ -67,7 +78,7 @@ public class CalendarController {
 		 * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
 		 * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		 */
-		List<Calendar> dateList = calendarService.retrieveUserProjectCalendar(currentUser, 53);
+		List<Calendar> dateList = calendarService.retrieveUserProjectCalendar(currentUser, id);
 		List<DateLog> dateLogList = new ArrayList<DateLog>();
 		
 		
@@ -136,26 +147,14 @@ public class CalendarController {
 			
 			calendarobject.setUserID(currentUser.getId());
 			
-			// THIS HERE NEEDS TO CHANGE - TK c:
-			/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			 * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-			 * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-			 * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			 */
-			calendarobject.setProjectID(53);
-			
-			System.out.println("CalendarController - mood: " + calendarobject.getMood());
-			System.out.println("CalendarController - date: " + calendarobject.getCurrentDate());
-			System.out.println("CalendarController - userID: " + calendarobject.getUserID());
-			System.out.println("CalendarController - projectID: " + calendarobject.getProjectID());
 			
 			calendarService.save(calendarobject);
 			
-			return showCalendar(model);
+			return showCalendar(model, calendarobject.getProjectID());
 		} else {
 
 			model.addAttribute("error", true);
-			return showCalendar(model);
+			return showCalendar(model, calendarobject.getProjectID());
 		}
 		
 
