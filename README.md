@@ -18,7 +18,7 @@
 
 # Amazon settings: #
   - Type: MySQL
-  - Host name: brdbs-cluster-1.cluster-ci7jxexv2ij7.ap-southeast-2.rds.amazonaws.com
+  - Host name: elec5619grp.ci7jxexv2ij7.ap-southeast-2.rds.amazonaws.com
   - Port: 3306
   - Username: brea8524
   - Password: jbh5N552mMzmR7Ge
