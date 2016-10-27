@@ -65,14 +65,14 @@
             -->
             <li><a href="${pageContext.request.contextPath}/projects/add"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Create Project</a></li>
             <li><a href="${pageContext.request.contextPath}/projects/view"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Manage Projects</a></li>
-            <li class="parent">
+            <li class="parent project-list">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <span><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Current Projects </span>
                 </a>
                 <ul class="children collapse in" id="sub-item-1">
                 	<c:forEach items="${projects}" var="proj" varStatus="projCounter">
                 		<c:choose>
-	                		<c:when test="${projCounter.count > 1}">
+	                		<c:when test="${proj.name != currentProject.name}">
 	                			<li>
 			                        <a href="${pageContext.request.contextPath}/project/${proj.name}">
 			                            <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
@@ -196,7 +196,7 @@
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
                             <div class="large">${totalIndex}</div>
-                            <div class="text-muted">Index Count</div>
+                            <div class="text-muted">Commit Count</div>
                         </div>
                     </div>
                 </div>
@@ -330,6 +330,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script>
         $('#calendar').datepicker({
+        });
+        
+        $('.project-list .children li').click(function(){
+        	$('.project-list .children li').removeClass('active-project');
         });
 
         !function ($) {

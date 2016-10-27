@@ -135,7 +135,7 @@ public class ProjectController {
         myModel.put("projects", this.projectManager.getProjects());
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String name = user.getUsername();
-		
+		//Users user1 = usersService.find(name);
 		myModel.put("username", name);
         return new ModelAndView("projectList", "model", myModel);
 	}

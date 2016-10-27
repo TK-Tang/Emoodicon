@@ -146,7 +146,8 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-header"><c:out value="${model.users.username}" /></h1>
+                <h1 class="page-header"><c:out value="${model.users.nameFirst}" /> <c:out value="${model.users.nameLast }" /></h1>
+                <p>(<c:out value="${model.users.username}" />)</p>
                 <%-- <p>Project Manager: 
                     <span class="project-manager">Ken Nichols</span> 
                 </p>
