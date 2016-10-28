@@ -9,6 +9,7 @@
 3.   Project edit, create, delete  - Kaibin yu
 4.   Dashboard, Frontend Integration  - Sidney
 5.   Project database, database Relation, Project List  - Kangdi Zhang
+6.   Emoji themes - Brenton (url /emojiTheme)
 
 # Basic architecture #
   - We use Spring MVC design pattern as domain - server - controller - front view. Domain is used to create tables for database schema through java annotations. Sever is responsible for retrieve data from database. Controller is used for take control of server and map the data to the database table. We use RESTful API to handle POST, GET, PUT, DELETE HTTP requests. Front view represents in .jsp format basically consist of CSS, javascript and HTML.
