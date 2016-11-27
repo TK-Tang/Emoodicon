@@ -50,7 +50,7 @@ public class projectManagerTest extends TestCase{
 		project.setPrice(PROJECT2_PRICE);
 		project.setProjectStartDate(PROJECT2_START_DATE);
 		project.setProjectDeadline(PROJECT2_DEADLINE_DATE);
-		project.setProjectManager(PROJECT_MANAGER);
+		project.setProjectManager(PROJECT2_MANAGER);
 		projects.add(project);
 		
 		projectManager.setProjects(projects);

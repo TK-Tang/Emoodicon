@@ -13,9 +13,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="${weppappRoot}/springmvc/resources/css/materialize.min.css">
     <link rel="stylesheet" href="${weppappRoot}/springmvc/resources/css/style-login.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
     // $() is a function.
@@ -119,7 +120,10 @@
 				      		<div class="input-field col s12">Username
                     <sf:input id="username" class="control" path="username" name="username"
                     type="text" placeholder="Username" />
+<<<<<<< HEAD
 	       				   
+=======
+>>>>>>> 30b78a13d6beacd0fca56381ce6b25c2cd1996dd
                     <div class="error">
                         <sf:errors path="username"></sf:errors>
                     </div>
@@ -127,7 +131,10 @@
 			           <div class="input-field col s12">Password
                     <sf:input id="password" class="control" path="password"
                         name="password" type="password" placeholder="Password"/>
+<<<<<<< HEAD
 			            	
+=======
+>>>>>>> 30b78a13d6beacd0fca56381ce6b25c2cd1996dd
                     <div class="error">
                         <sf:errors path="password"></sf:errors>
                     </div>
@@ -136,7 +143,10 @@
                  Confirm Password
                     <input id="confirmpassword" class="control"
                     name="confirmpassword" type="password" placeholder="Confirm Password" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 30b78a13d6beacd0fca56381ce6b25c2cd1996dd
                  </div>
 
 			           <div class="col s12">
