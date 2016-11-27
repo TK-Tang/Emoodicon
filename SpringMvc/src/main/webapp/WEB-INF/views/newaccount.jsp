@@ -116,26 +116,27 @@
 				    <sf:form id="form" method="post"
 			            action="${pageContext.request.contextPath}/createaccount"
 			            commandName="user">
-				      		<div class="input-field col s12">
+				      		<div class="input-field col s12">Username
                     <sf:input id="username" class="control" path="username" name="username"
                     type="text" placeholder="Username" />
-	       				    <label for="username">Username</label>
+	       				   
                     <div class="error">
                         <sf:errors path="username"></sf:errors>
                     </div>
 			           </div>
-			           <div class="input-field col s12">
+			           <div class="input-field col s12">Password
                     <sf:input id="password" class="control" path="password"
                         name="password" type="password" placeholder="Password"/>
-			            	<label for="password">Password</label>
+			            	
                     <div class="error">
                         <sf:errors path="password"></sf:errors>
                     </div>
 			           </div>
                  <div class="input-field col s12">
+                 Confirm Password
                     <input id="confirmpassword" class="control"
                     name="confirmpassword" type="password" placeholder="Confirm Password" />
-                    <label for="confirmpassword">Confirm Password</label>
+
                  </div>
 
 			           <div class="col s12">
